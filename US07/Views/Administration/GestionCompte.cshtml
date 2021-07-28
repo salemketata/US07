@@ -1,0 +1,630 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="stylesheet" type="text/css" href="~/assets/plugins/datatables/datatables.min.css" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-msg.css" rel="stylesheet" />
+
+
+<style>
+    .page-item.active .page-link {
+        background-color: #2a3542;
+    }
+
+    .page-link {
+        color: white;
+    }
+</style>
+<div id="main">
+
+    <!-- top bar navigation -->
+    <!-- End Navigation -->
+    <!-- Left Sidebar -->
+    <div class="left main-sidebar">
+
+        <div class="sidebar-inner leftscroll">
+
+            <div id="sidebar-menu">
+
+                <ul>
+                    <li class="submenu">
+                        <a class="active" id="tables" href="#">
+                            <i class="fas fa-table"></i>
+                            <span> Administration </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="list-unstyled">
+                            <li>@Html.ActionLink(" Dashboard", "Index", "Administration", null)</li>
+                            <li>@Html.ActionLink(" Gestion des comptes", "GestionCompte", "Administration", null)</li>
+                            <li>@Html.ActionLink(" Gestion Paramétres", "Parametrage", "Administration", null)</li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+
+                <div class="clearfix"></div>
+
+            </div>
+
+            <div class="clearfix"></div>
+
+        </div>
+
+    </div>
+    <!-- End Sidebar -->
+
+    <div class="content-page">
+
+        <!-- Start content -->
+        <div class="content">
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-xl-12">
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <button type="button" class="btn btn-primary" style="float:right;background-color:#2a3542;border-color:#2a3542;" data-toggle="modal" data-target="#exampleModal">
+                                        Ajouter Compte
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <form class="contact-form row" id="ACompte">
+
+                                                <div class="modal-content">
+
+                                                    <div class="modal-header" style="background-color: #2a3542;">
+                                                        <h5 class="modal-title" style="color:white;" id="exampleModalLabel">Ajouter Membre</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+
+
+                                                        <div class="row">
+                                                            <div class="form-field col-lg-6">
+                                                                <input id="Identifiant" class="input-text js-input" type="text" disabled required>
+                                                                <input id="IdentifiantH" name="Identifiant" class="input-text js-input hidden" type="text" required>
+                                                                <label class="label" for="Identifiant">Identifiant</label>
+                                                            </div>
+                                                            <div class="form-field col-lg-6 ">
+                                                                <input id="MotDePasse" name="MotDePasse" class="input-text js-input" type="password" required>
+                                                                <label class="label" for="MotDePasse">Mot De Passe</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="form-field col-lg-6">
+
+                                                                <input id="CarteMembre" onchange="CompteCarteCheck(),RemplirIdeCarte()" name="CarteMembre" class="input-text js-input" type="text" required>
+
+                                                                <label class="label" for="CarteMembre">Carte Membre</label>
+
+                                                            </div>
+                                                            <div class="form-field col-lg-6 ">
+                                                                <input id="CarteIdentite" onchange="CompteCINCheck(),RemplirIdeCIN()" name="CarteIdentite" class="input-text js-input" type="text" required>
+                                                                <label class="label" for="CarteIdentite">Carte Identite</label>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <p id="statu"></p>
+
+
+
+
+                                                        <p id="status"></p>
+
+
+
+                                                        <div class="row">
+                                                            <div class="form-field col-lg-6 ">
+                                                                <input id="DateDeNaissance" onchange="RemplirAgeAjout()" name="DateDeNaissance" class="input-text js-input" type="date" required>
+                                                                <label class="label" for="DateDeNaissance">Date De Naissance</label>
+                                                            </div>
+                                                            <div class="form-field col-lg-6 ">
+                                                                <input id="Age" class="input-text js-input" type="text" required disabled>
+                                                                <input id="AgeH" name="Age" class="input-text js-input hidden" type="text" required>
+                                                                <label class="label" for="Age">Age</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="form-field col-lg-6">
+                                                                <input id="NumTel" name="NumTel" class="input-text js-input" type="text" required>
+                                                                <label class="label" for="NumTel">Numéro Téléphone</label>
+                                                            </div>
+                                                            <div class="form-field col-lg-6">
+
+                                                                <select class="input-text js-input" id="Role" onchange="CompteRoleCheck()" name="Role">
+                                                                    <option>Selectionner un role</option>
+                                                                    <option>Chef Secteur Mharza & Hay Habib</option>
+                                                                    <option>Chef Secteur Sokra</option>
+                                                                    <option>Chef Secteur Gabes</option>
+                                                                    <option>Chef Secteur Matar</option>
+                                                                    <option>Chef Secteur Manzel Chaker</option>
+                                                                    <option>Chef Secteur Ain</option>
+                                                                    <option>Chef Secteur Lafrane & Gremda & Tanyour</option>
+                                                                    <option>Chef Secteur Tounes</option>
+                                                                    <option>Chef Secteur Mahdiya & Saltniya</option>
+                                                                    <option>Chef Secteur Agareb</option>
+                                                                    <option>Chef Secteur Saadi</option>
+                                                                    <option>Staff</option>
+                                                                    <option>Caissier du groupe</option>
+                                                                </select>
+                                                                <label class="label" for="Role">Role</label>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                                        <button type="button" style="background-color:#2a3542;border-color:#2a3542;" onclick="AjouterCompte()" class="btn btn-primary btnAjotrer">Enregistrer</button>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="MembreCompte" cellpadding="0" cellspacing="0" border="0" style="width:100%;" class="table table-striped  container display">
+                                            <thead style="background-color:#2a3542;color:white;">
+                                                <tr>
+                                                    <th>Carte Membre</th>
+                                                    <th>Identifiant</th>
+                                                    <th>CIN</th>
+                                                    <th>Date De Naissance</th>
+                                                    <th>Age</th>
+                                                    <th>Role</th>
+                                                    <th>Numéro Portable</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <!-- end table-responsive-->
+
+                                </div>
+                                <!-- end card-body-->
+
+                            </div>
+                            <!-- end card-->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+                <!-- end row -->
+                <!-- end row -->
+                <!-- end row-->
+
+            </div>
+            <!-- END container-fluid -->
+
+        </div>
+        <!-- END content -->
+
+    </div>
+    <!-- END content-page -->
+
+
+
+
+
+</div>
+<div class="modal fade" id="ModifierCompte" tabindex="-1" role="dialog" aria-labelledby="ModifierMembre" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form class="contact-form row" id="MCompte">
+            <div class="modal-content">
+
+                <div class="modal-header" style="background-color: #2a3542;">
+                    <h5 class="modal-title" style="color:white;" id="exampleModalLabel">Modifier Membre</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <input id="Id" name="Id" class="input-text js-input hidden" type="text">
+                <div class="modal-body">
+
+
+                    <div class="row">
+                        <div class="form-field col-lg-6">
+                            <input id="Identifiant" class="input-text js-input " type="text" disabled required>
+                            <input id="IdentifiantH" name="Identifiant" class="input-text js-input hidden" type="text" required>
+                            <label class="label" for="Identifiant">Identifiant</label>
+                        </div>
+                        <div class="form-field col-lg-6 ">
+                            <input id="MotDePasse" name="MotDePasse" class="input-text js-input" type="password" required>
+                            <label class="label" for="MotDePasse">Mot De Passe</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-field col-lg-6">
+
+                            <input id="CarteMembre" onchange="RemplirIdeCarteM()" name="CarteMembre" class="input-text js-input" type="text" required>
+
+                            <label class="label" for="CarteMembre">Carte Membre</label>
+
+                        </div>
+                        <div class="form-field col-lg-6 ">
+                            <input id="CarteIdentite" onchange="RemplirIdeCINM()" name="CarteIdentite" class="input-text js-input" type="text" required>
+                            <label class="label" for="CarteIdentite">Carte Identite</label>
+                        </div>
+                    </div>
+
+
+                    <p id="statu"></p>
+
+
+
+
+                    <p id="status"></p>
+
+
+
+                    <div class="row">
+                        <div class="form-field col-lg-6 ">
+                            <input id="DateDeNaissance" onchange="RemplirAgeModif()" name="DateDeNaissance" class="input-text js-input" type="date" required>
+                            <label class="label" for="DateDeNaissance">Date De Naissance</label>
+                        </div>
+                        <div class="form-field col-lg-6 ">
+                            <input id="Age" class="input-text js-input" type="text" required disabled>
+                            <input id="AgeH" name="Age" class="input-text js-input hidden" type="text" required>
+                            <label class="label" for="Age">Age</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-field col-lg-6">
+                            <input id="NumTel" name="NumTel" class="input-text js-input" type="text" required>
+                            <label class="label" for="NumTel">Numéro Téléphone</label>
+                        </div>
+                        <div class="form-field col-lg-6">
+
+                            <select id="Role" class="input-text js-input" name="Role" disabled>
+                                <option>Chef Secteur Mharza & Hay Habib</option>
+                                <option>Chef Secteur Sokra</option>
+                                <option>Chef Secteur Gabes</option>
+                                <option>Chef Secteur Matar</option>
+                                <option>Chef Secteur Manzel Chaker</option>
+                                <option>Chef Secteur Ain</option>
+                                <option>Chef Secteur Lafrane & Gremda & Tanyour</option>
+                                <option>Chef Secteur Tounes</option>
+                                <option>Chef Secteur Mahdiya & Saltniya</option>
+                                <option>Chef Secteur Agareb</option>
+                                <option>Chef Secteur Saadi</option>
+                                <option>Staff</option>
+                                <option>Caissier du groupe</option>
+                            </select>
+                            <label class="label" for="Role">Role</label>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="button" style="background-color:#2a3542;border-color:#2a3542;" onclick="ModifierCompte()" class="btn btn-primary btnModifier">Enregistrer</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts
+{
+
+
+
+
+
+
+
+
+    <script src="~/assets/plugins/datatables/datatables.min.js"></script>
+    <script src="~/assets/data/data_datatables.js"></script>
+    <script src="~/assets/js/jquery.maskedinput.min.js"></script>
+    <script src="~/Content/bootstrap-msg.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js" integrity="sha512-K3MtzSFJk6kgiFxCXXQKH6BbyBrTkTDf7E6kFh3xBZ2QNMtb6cU/RstENgQkdSLkAZeH/zAtzkxJOTTd8BqpHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script>
+
+        $(document).ready(function () {
+            $("#CarteMembre").mask("999");
+            $("#CarteIdentite").mask("99999999");
+            $("#NumTel").mask("99999999");
+            var tab = $("#MembreCompte").DataTable({
+                "paging": true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/French.json"
+                },
+                ajax: {
+                    url: "/api/adm/GetComptes",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "carteMembre"
+                    },
+                    {
+                        data: "identifiant"
+                    },
+                    {
+                        data: "carteIdentite"
+                    },
+                    {
+                        data: "dateDeNaissance",
+                        "render": function (data, type, row) {
+                            return moment(new Date(data).toString()).format('DD-MM-YYYY');
+                        }
+                    },
+
+                    {
+                        data: "age"
+
+                    },
+                    {
+                        data: "role"
+
+                    },
+                    {
+                        data: "numTel"
+
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+
+                            return "<button class=' del btn btn-danger glyphicon glyphicon-trash '   style='width: 40px;' data-customer-id=" + data + "></button>&nbsp;&nbsp;<button href='#ModifierCompte' class= 'edit  btn btn-warning glyphicon glyphicon-pencil '  style = 'width: 40px;' data-toggle='modal'></button><input type='hidden' class='id' value='" + data + "'/>";
+
+                        }
+                    }
+                ]
+            });
+            $("#MembreCompte").on("click", ".del", function () {
+                var button = $(this);
+                Swal.fire({
+                    title: 'Vous êtes sure?',
+                    text: "Vous voullez supprimer ce membre!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#2a3542',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Oui, supprimer!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "/api/adm/" + button.attr("data-customer-id"),
+                            method: "DELETE",
+                            success: function () {
+                                tab.row(button.parents("tr")).remove().draw();
+                                window.location.reload();
+                            }
+                        });
+                    }
+                })
+
+            });
+
+            $("#MembreCompte").on('click', '.edit', function () {
+
+                var id = $(this).parent().find('.id').val();
+                $.ajax({
+                    type: 'GET',
+                    url: '/api/adm/GetCompte/' + id,
+                    success: function (Compte) {
+                        console.log(Compte);
+                        $('#ModifierCompte #Id').val(Compte[0].id);
+                        $('#ModifierCompte #Identifiant').val(Compte[0].identifiant);
+                        $('#ModifierCompte #IdentifiantH').val(Compte[0].identifiant);
+                        /*$('#ModifierCompte #MotDePasse').val(Compte[0].motDePasse);*/
+                        $('#ModifierCompte #CarteMembre').val(Compte[0].carteMembre);
+                        $('#ModifierCompte #CarteIdentite').val(Compte[0].carteIdentite);
+                        var rec = new Date(Compte[0].dateDeNaissance);
+                        var dd = String(rec.getDate()).padStart(2, '0');
+                        var mm = String(rec.getMonth() + 1).padStart(2, '0'); //January is 0!
+                        var yyyy = rec.getFullYear();
+                        rec = yyyy + '-' + mm + '-' + dd;
+                        $('#ModifierCompte #DateDeNaissance').val(rec);
+                        $('#ModifierCompte #Age').val(Compte[0].age);
+                        $('#ModifierCompte #AgeH').val(Compte[0].age);
+                        $('#ModifierCompte #NumTel').val(Compte[0].numTel);
+                        $('#ModifierCompte #Role').val(Compte[0].role);
+                    }
+                });
+            });
+
+        });
+        function RemplirAgeModif() {
+            var DateNais = $("#MCompte #DateDeNaissance").val();
+            var d = new Date();
+            var dD = new Date(DateNais);
+            var age = d.getFullYear() - dD.getFullYear();
+            $("#MCompte #Age").val(age);
+            $("#MCompte #AgeH").val(age);
+
+        }
+        function RemplirAgeAjout() {
+            var DateNais = document.getElementById("DateDeNaissance").value;
+            var d = new Date();
+            var dD = new Date(DateNais);
+            var age = d.getFullYear() - dD.getFullYear();
+            $("#ACompte #Age").val(age);
+            $("#ACompte #AgeH").val(age);
+
+        }
+        function AjouterCompte() {
+            $.ajax({
+                url: "/Administration/AjouterCompte",
+                type: "POST",
+                dataType: 'JSON',
+                data: $("#ACompte").serialize(),
+
+                success: function (result) {
+                    $("#ACompte")[0].reset();
+                    window.location.reload();
+
+                },
+                error: function (err) {
+                    Msg.error("Caisse n'est pas ajouté", 3000);
+                }
+            });
+        }
+        function ModifierCompte() {
+            $.ajax({
+                url: "/Administration/ModifierCompte",
+                type: "POST",
+                dataType: 'JSON',
+                data: $("#MCompte").serialize(),
+
+                success: function (result) {
+                    $("#MCompte")[0].reset();
+                    window.location.reload();
+
+                },
+                error: function (err) {
+                    Msg.error("Caisse n'est pas ajouté", 3000);
+                }
+            });
+        }
+        function CompteCarteCheck() {
+                $.post("@Url.Action("checkCompteCarte", "Administration")",
+                    {
+                        userdata: $("#ACompte #CarteMembre").val(),
+                    },
+                    function (data) {
+                        if (data == 0) {
+                            $("#ACompte #CarteMembre").css("border-color", "green");
+                            $(".btnAjotrer").prop('disabled', false);
+                        }
+                        else {
+                            swal.fire({
+                                title: "Attention!",
+                                text: "Numéro Carte Membre deja existe",
+                                timer: 3000
+                            })
+                            $("#ACompte #CarteMembre").css("border-color", "Red");
+                            $(".btnAjotrer").prop('disabled', true);
+                        }
+
+                     });
+        }
+        function CompteCINCheck() {
+                $.post("@Url.Action("checkCompteCIN", "Administration")",
+                    {
+                        userdata: $("#ACompte #CarteIdentite").val(),
+                    },
+                    function (data) {
+                        if (data == 0) {
+
+                            $("#ACompte #CarteIdentite").css("border-color", "green");
+                            $(".btnAjotrer").prop('disabled', false);
+                        }
+                        else {
+                            swal.fire({
+                                title: "Attention!",
+                                text: "Numéro Carte Identité deja existe",
+                                timer: 3000
+                            })
+                            $("#ACompte #CarteIdentite").css("border-color", "Red");
+                            $(".btnAjotrer").prop('disabled', true);
+                        }
+
+                     });
+        }
+        function RemplirIdeCarte() {
+            var c = $("#ACompte #CarteMembre").val();
+            var CIN = $("#ACompte #CarteIdentite").val();
+            if (CIN != "" && c != "") {
+                $("#ACompte #Identifiant").val(c + "_" + CIN);
+                $("#ACompte #IdentifiantH").val(c + "_" + CIN);
+            }
+            if (CIN == "" && c !="") {
+                $("#ACompte #Identifiant").val(c + "_");
+                $("#ACompte #IdentifiantH").val(c + "_");
+            }
+
+        }
+        function RemplirIdeCarteM() {
+            var c = $("#MCompte #CarteMembre").val();
+            var CIN = $("#MCompte #CarteIdentite").val();
+            if (CIN != "" && c != "") {
+                $("#MCompte #Identifiant").val(c + "_" + CIN);
+                $("#MCompte #IdentifiantH").val(c + "_" + CIN);
+            }
+            if (CIN == "" && c != "") {
+                $("#MCompte #Identifiant").val(c + "_");
+                $("#MCompte #IdentifiantH").val(c + "_");
+            }
+
+        }
+        function RemplirIdeCIN() {
+            var c = $("#ACompte #CarteMembre").val();
+            var CIN = $("#ACompte #CarteIdentite").val();
+            if (CIN != "" && c != "") {
+                $("#ACompte #Identifiant").val(c + "_" + CIN);
+                $("#ACompte #IdentifiantH").val(c + "_" + CIN);
+            }
+            if (CIN != "" && c == "") {
+                $("#ACompte #Identifiant").val("_" + CIN);
+                $("#ACompte #IdentifiantH").val("_" + CIN);
+            }
+
+        }
+        function RemplirIdeCINM() {
+            var c = $("#MCompte #CarteMembre").val();
+            var CIN = $("#MCompte #CarteIdentite").val();
+            if (CIN != "" && c != "") {
+                $("#MCompte #Identifiant").val(c + "_" + CIN);
+                $("#MCompte #IdentifiantH").val(c + "_" + CIN);
+            }
+            if (CIN != "" && c == "") {
+                $("#MCompte #Identifiant").val("_" + CIN);
+                $("#MCompte #IdentifiantH").val("_" + CIN);
+            }
+
+        }
+        function CompteRoleCheck() {
+                $.post("@Url.Action("checkCompteRole", "Administration")",
+                    {
+                        userdata: $("#ACompte #Role").val(),
+                    },
+                    function (data) {
+                        if (data == 0) {
+                            $("#ACompte #Role").css("border-color", "green");
+                            $(".btnAjotrer").prop('disabled', false);
+                        }
+                        else {
+                            swal.fire({
+                                title: "Attention!",
+                                text: "Deja existe un compte avec ce role",
+                                timer: 3000
+                            })
+                            $("#ACompte #Role").css("border-color", "Red");
+                            $(".btnAjotrer").prop('disabled', true);
+                        }
+
+                     });
+        }
+    </script>
+}

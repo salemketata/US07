@@ -1,0 +1,508 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="stylesheet" type="text/css" href="~/assets/plugins/datatables/datatables.min.css" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-msg.css" rel="stylesheet" />
+
+
+<style>
+    .page-item.active .page-link {
+        background-color: #2a3542;
+    }
+
+    .page-link {
+        color: white;
+    }
+</style>
+<div id="main">
+
+    <!-- top bar navigation -->
+    
+    <!-- End Navigation -->
+    <!-- Left Sidebar -->
+    <div class="left main-sidebar">
+
+        <div class="sidebar-inner leftscroll">
+
+            <div id="sidebar-menu">
+
+                <ul>
+                    <li class="submenu">
+                        <a class="active" id="tables" href="#">
+                            <i class="fas fa-table"></i>
+                            <span> Secteur Mharza & Hay Habib </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="list-unstyled">
+                            <li>@Html.ActionLink(" Dashboard", "IndexMharzaHayHabib", "Secteurs", null)</li>
+
+                            <li>@Html.ActionLink(" Gestion des membres", "IndexMembreMharzaHayHabib", "Secteurs", null)</li>
+                            <li>@Html.ActionLink(" Gestion Cotisation", "IndexCaisseMharzaHayHabib", "Secteurs", null)</li>
+                            <li>@Html.ActionLink(" Gestion Produit", "IndexProduitMharzaHayHabib", "Secteurs", null)</li>
+                            <li>@Html.ActionLink(" Gestion Deplacement", "IndexDeplacementMharzaHayHabib", "Secteurs", null)</li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+
+                <div class="clearfix"></div>
+
+            </div>
+
+            <div class="clearfix"></div>
+
+        </div>
+
+    </div>
+    <!-- End Sidebar -->
+
+    <div class="content-page">
+
+        <!-- Start content -->
+        <div class="content">
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-xl-12">
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <button type="button" class="btn btn-primary" style="float:right;background-color:#2a3542;border-color:#2a3542;" data-toggle="modal" data-target="#exampleModal">
+                                        Ajouter Membre
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <form class="contact-form row" id="AMembre">
+
+                                                <div class="modal-content">
+
+                                                    <div class="modal-header" style="background-color: #2a3542;">
+                                                        <h5 class="modal-title" style="color:white;" id="exampleModalLabel">Ajouter Membre</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+
+
+                                                        <div class="row">
+                                                            <div class="form-field col-lg-6">
+                                                                <input id="Nom" name="Nom" class="input-text js-input" type="text" required>
+                                                                <label class="label" for="Nom">Nom</label>
+                                                            </div>
+                                                            <div class="form-field col-lg-6 ">
+                                                                <input id="Prenom" name="Prenom" class="input-text js-input" type="text" required>
+                                                                <label class="label" for="Prenom">Prénom</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="form-field col-lg-6">
+
+                                                                <input id="CarteMembre" onchange="MembreCarteCheck()" name="CarteMembre" class="input-text js-input" type="text" required>
+
+                                                                <label class="label" for="CarteMembre">Carte Membre</label>
+
+                                                            </div>
+                                                            <div class="form-field col-lg-6 ">
+                                                                <input id="CarteIdentite" onchange="MembreCINCheck()" name="CarteIdentite" class="input-text js-input" type="text" required>
+                                                                <label class="label" for="CarteIdentite">Carte Identite</label>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <p id="statu"></p>
+
+
+
+
+                                                        <p id="status"></p>
+
+
+
+                                                        <div class="row">
+                                                            <div class="form-field col-lg-6 ">
+                                                                <input id="DateDeNaissance" onchange="RemplirAgeAjout()" name="DateDeNaissance" class="input-text js-input" type="date" required>
+                                                                <label class="label" for="DateDeNaissance">Date De Naissance</label>
+                                                            </div>
+                                                            <div class="form-field col-lg-6 ">
+                                                                <input id="Age" class="input-text js-input" type="text" required disabled>
+                                                                <input id="AgeH" name="Age" class="input-text js-input hidden" type="text" required>
+                                                                <label class="label" for="Age">Age</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            @*<div class="form-field col-lg-6">
+                                                                    <input id="Secteur" name="Secteur" class="input-text js-input" type="text" required>
+                                                                    <label class="label" for="Secteur">Secteur</label>
+                                                                </div>*@
+                                                            <div class="form-field col-lg-6">
+
+                                                                <select class="input-text js-input" name="Secteur">
+                                                                    <option>Mharza & Hay Habib</option>
+                                                                    <option>Sokra</option>
+                                                                </select>
+                                                                <label class="label" for="Secteur">Secteur</label>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                                        <button type="button" style="background-color:#2a3542;border-color:#2a3542;" onclick="AjouterMembre()" class="btn btn-primary btnAjotrer">Enregistrer</button>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="Membre" cellpadding="0" cellspacing="0" border="0" style="width:100%;" class="table table-striped  container display">
+                                            <thead style="background-color:#2a3542;color:white;">
+                                                <tr>
+                                                    <th>Carte Membre</th>
+                                                    <th>Nom</th>
+                                                    <th>Prénom</th>
+                                                    <th>CIN</th>
+                                                    <th>Date De Naissance</th>
+                                                    <th>Age</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <!-- end table-responsive-->
+
+                                </div>
+                                <!-- end card-body-->
+
+                            </div>
+                            <!-- end card-->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+                <!-- end row -->
+                <!-- end row -->
+                <!-- end row-->
+
+            </div>
+            <!-- END container-fluid -->
+
+        </div>
+        <!-- END content -->
+
+    </div>
+    <!-- END content-page -->
+
+
+
+
+
+</div>
+<div class="modal fade" id="ModifierMembre" tabindex="-1" role="dialog" aria-labelledby="ModifierMembre" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form class="contact-form row" id="MMembre">
+            <div class="modal-content">
+
+                <div class="modal-header" style="background-color: #2a3542;">
+                    <h5 class="modal-title" style="color:white;" id="exampleModalLabel">Modifier Membre</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <input id="IdMembre" name="MembreID" class="input-text js-input hidden" type="text">
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="form-field col-lg-6">
+                            <input id="Nom" name="Nom" class="input-text js-input" type="text" required>
+                            <label class="label" for="Nom">Nom</label>
+                        </div>
+                        <div class="form-field col-lg-6 ">
+                            <input id="Prenom" name="Prenom" class="input-text js-input" type="text" required>
+                            <label class="label" for="Prenom">Prénom</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-field col-lg-6">
+                            <input id="CarteMembre" name="CarteMembre" class="input-text js-input" type="text" required>
+                            <label class="label" for="CarteMembre">Carte Membre</label>
+                        </div>
+                        <div class="form-field col-lg-6 ">
+                            <input id="CarteIdentite" name="CarteIdentite" class="input-text js-input" type="text" required>
+                            <label class="label" for="CarteIdentite">Carte Identite</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-field col-lg-6">
+                            <input id="DateDeNaissanceM" onchange="RemplirAgeModif()" name="DateDeNaissance" class="input-text js-input" type="date" required>
+                            <label class="label" for="DateDeNaissance">Date De Naissance</label>
+                        </div>
+                        <div class="form-field col-lg-6 ">
+                            <input id="Age" class="input-text js-input" type="text" disabled>
+                            <input id="AgeH" name="Age" class="input-text js-input hidden" type="text" required>
+                            <label class="label" for="Age">Age</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-field col-lg-6">
+                            <input id="Secteur" class="input-text js-input" type="text" disabled>
+                            <input id="SecteurH" name="Secteur" class="input-text js-input hidden" type="text" required>
+                            <label class="label" for="Secteur">Secteur</label>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="button" style="background-color:#2a3542;border-color:#2a3542;" onclick="ModifierMembre()" class="btn btn-primary btnModifier">Enregistrer</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts
+{
+
+
+
+
+
+
+
+
+    <script src="~/assets/plugins/datatables/datatables.min.js"></script>
+    <script src="~/assets/data/data_datatables.js"></script>
+    <script src="~/assets/js/jquery.maskedinput.min.js"></script>
+    <script src="~/Content/bootstrap-msg.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js" integrity="sha512-K3MtzSFJk6kgiFxCXXQKH6BbyBrTkTDf7E6kFh3xBZ2QNMtb6cU/RstENgQkdSLkAZeH/zAtzkxJOTTd8BqpHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script>
+
+        $(document).ready(function () {
+            $("#CarteMembre").mask("999");
+            $("#CarteIdentite").mask("99999999");
+
+            var tab = $("#Membre").DataTable({
+                "paging": true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/French.json"
+                },
+                ajax: {
+                    url: "/api/sec/GetMembreMharza",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "carteMembre"
+                    },
+                    {
+                        data: "nom"
+                    },
+                    {
+                        data: "prenom"
+                    },
+                    {
+                        data: "carteIdentite"
+                    },
+                    {
+                        data: "dateDeNaissance",
+                        "render": function (data, type, row) {
+                            return moment(new Date(data).toString()).format('DD-MM-YYYY');
+                        }
+                    },
+
+                    {
+                        data: "age"
+
+                    },
+                    {
+                        data: "membreID",
+                        render: function (data) {
+
+                            return "<button class=' del btn btn-danger glyphicon glyphicon-trash '   style='width: 40px;' data-customer-id=" + data + "></button>&nbsp;&nbsp;<button href='#ModifierMembre' onclick='VerifEQuilM()' class= 'edit  btn btn-warning glyphicon glyphicon-pencil '  style = 'width: 40px;' data-toggle='modal'></button><input type='hidden' class='id' value='" + data + "'/>";
+
+                        }
+                    }
+                ]
+            });
+            $("#Membre").on("click", ".del", function () {
+                var button = $(this);
+                Swal.fire({
+                    title: 'Vous êtes sure?',
+                    text: "Vous voullez supprimer ce membre!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#2a3542',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Oui, supprimer!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "/api/Sec/" + button.attr("data-customer-id"),
+                            method: "DELETE",
+                            success: function () {
+                                tab.row(button.parents("tr")).remove().draw();
+                                window.location.reload();
+                            }
+                        });
+                    }
+                })
+
+            });
+
+            $("#Membre").on('click', '.edit', function () {
+
+                var id = $(this).parent().find('.id').val();
+                $.ajax({
+                    type: 'GET',
+                    url: '/api/sec/GetMembre/' + id,
+                    success: function (Membre) {
+                        console.log(Membre);
+                        $('#ModifierMembre #IdMembre').val(Membre[0].membreID);
+                        $('#ModifierMembre #Nom').val(Membre[0].nom);
+                        $('#ModifierMembre #Prenom').val(Membre[0].prenom);
+                        $('#ModifierMembre #CarteMembre').val(Membre[0].carteMembre);
+                        $('#ModifierMembre #CarteIdentite').val(Membre[0].carteIdentite);
+                        var rec = new Date(Membre[0].dateDeNaissance);
+                        var dd = String(rec.getDate()).padStart(2, '0');
+                        var mm = String(rec.getMonth() + 1).padStart(2, '0'); //January is 0!
+                        var yyyy = rec.getFullYear();
+                        rec = yyyy + '-' + mm + '-' + dd;
+                        $('#ModifierMembre #DateDeNaissanceM').val(rec);
+                        $('#ModifierMembre #Age').val(Membre[0].age);
+                        $('#ModifierMembre #AgeH').val(Membre[0].age);
+                        $('#ModifierMembre #Secteur').val(Membre[0].secteur);
+                        $('#ModifierMembre #SecteurH').val(Membre[0].secteur);
+                    }
+                });
+            });
+
+        });
+        function RemplirAgeModif() {
+            var DateNais = document.getElementById("DateDeNaissanceM").value;
+            var d = new Date();
+            var dD = new Date(DateNais);
+            var age = d.getFullYear() - dD.getFullYear();
+            $("#MMembre #Age").val(age);
+            $("#MMembre #AgeH").val(age);
+
+        }
+        function RemplirAgeAjout() {
+            var DateNais = document.getElementById("DateDeNaissance").value;
+            var d = new Date();
+            var dD = new Date(DateNais);
+            var age = d.getFullYear() - dD.getFullYear();
+            $("#AMembre #Age").val(age);
+            $("#AMembre #AgeH").val(age);
+
+        }
+        function AjouterMembre() {
+            $.ajax({
+                url: "/Secteurs/AjouterMembre",
+                type: "POST",
+                dataType: 'JSON',
+                data: $("#AMembre").serialize(),
+
+                success: function (result) {
+                    $("#AMembre")[0].reset();
+                    window.location.reload();
+
+                },
+                error: function (err) {
+                    Msg.error("Caisse n'est pas ajouté", 3000);
+                }
+            });
+        }
+        function ModifierMembre() {
+            $.ajax({
+                url: "/Secteurs/ModifierMembre",
+                type: "POST",
+                dataType: 'JSON',
+                data: $("#MMembre").serialize(),
+
+                success: function (result) {
+                    $("#MMembre")[0].reset();
+                    window.location.reload();
+
+                },
+                error: function (err) {
+                    Msg.error("Caisse n'est pas ajouté", 3000);
+                }
+            });
+        }
+        function MembreCarteCheck() {
+                $.post("@Url.Action("checkMembreCarte", "Secteurs")",
+                    {
+                        userdata: $("#AMembre #CarteMembre").val(),
+                    },
+                    function (data) {
+                        if (data == 0) {
+                            $("#AMembre #CarteMembre").css("border-color", "green");
+                            $(".btnAjotrer").prop('disabled', false);
+                        }
+                        else {
+                            swal.fire({
+                                title: "Attention!",
+                                text: "Numéro Carte Membre deja existe",
+                                timer: 3000
+                            })
+                            $("#AMembre #CarteMembre").css("border-color", "Red");
+                            $(".btnAjotrer").prop('disabled', true);
+                        }
+
+                     });
+        }
+        function MembreCINCheck() {
+                $.post("@Url.Action("checkMembreCIN", "Secteurs")",
+                    {
+                        userdata: $("#AMembre #CarteIdentite").val(),
+                    },
+                    function (data) {
+                        if (data == 0) {
+
+                            $("#AMembre #CarteIdentite").css("border-color", "green");
+                            $(".btnAjotrer").prop('disabled', false);
+                        }
+                        else {
+                            swal.fire({
+                                title: "Attention!",
+                                text: "Numéro Carte Identité deja existe",
+                                timer: 3000
+                            })
+                            $("#AMembre #CarteIdentite").css("border-color", "Red");
+                            $(".btnAjotrer").prop('disabled', true);
+                        }
+
+                     });
+        }
+
+    </script>
+}

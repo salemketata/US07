@@ -1,0 +1,619 @@
+﻿@model US07.Models.Compte
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.oussamahenia.com/?fbclid=IwAR3dd5w5sSunpP3qbOjs7JdzaDMesCB_Cep_96mmw3TpqHkB2E-eCb9WrtM by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 01 Jul 2021 10:27:06 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script src="https://kit.fontawesome.com/45e38e596f.js" crossorigin="anonymous"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ultras Sfaxiens 2007</title>
+    <meta name="description" content="Oussama HENIA" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet">
+    <link href="../maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="~/statique/styles/main.css" rel="stylesheet" />
+    <link href="~/statique/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/statique/css/aos.css" rel="stylesheet" />
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="~/Login/css/uikit.min.css" rel="stylesheet" />
+</head>
+<body id="top">
+
+
+    <header style="background-color:black;">
+        <div class="profile-page sidebar-collapse" style="background-color:black;">
+            <nav class="navbar navbar-expand-lg fixed-top  " style="background-color:black;">
+                <div class="container" style="background-color:black;">
+                    <div class="navbar-translate" style="background-color:black;">
+                        <a class="navbar-brand" href="#" rel="tooltip">US'07</a>
+
+                        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-bar bar1"></span><span class="navbar-toggler-bar bar2"></span><span class="navbar-toggler-bar bar3"></span></button>
+                    </div>
+                    <div class="collapse navbar-collapse justify-content-end" id="navigation" style="background-color:black;">
+                        <ul class="navbar-nav" style="background-color:black;">
+                            <li class="nav-item"><a class="nav-link smooth-scroll" href="#carte">Carte Membre</a></li>
+                            <li class="nav-item"><a class="nav-link smooth-scroll" href="#Hiver">Produit Hiver</a></li>
+                            <li class="nav-item"><a class="nav-link smooth-scroll" href="#Ete">Produit Ete</a></li>
+                            <li class="nav-item"><a class="nav-link smooth-scroll" href="#Graffiti">Graffiti</a></li>
+                            <li class="nav-item"><a class="nav-link smooth-scroll" href="#Craquage">Craquage</a></li>
+                            <li class="nav-item"><a class="nav-link smooth-scroll" href="#Autre">Autre</a></li>
+                            <li class="nav-item"><a class="nav-link smooth-scroll" href="#contact">Contact</a></li>
+                            <li class="nav-item"><a class="nav-link smooth-scroll" href="#modal-sections" uk-toggle>Connexion</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="page-content">
+        <div>
+            <div class="profile-page">
+                <div class="wrapper">
+                    <div class="page-header page-header-small" filter-color="green">
+                        <div class="page-header-image" style="background-image: url('../../statique/images/pdc.jpg');"></div>
+                        <div class="container">
+                            <div class="content-center">
+                                <div class="cc-profile-image"><a href="#">   <img src="~/statique/images/UltrasBack.png" /></a></div>
+                                <div class="h2 title">Ultras Sfaxiens 2007</div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="container">
+                                <div class="button-container">
+                                    <a class="btn btn-default btn-round btn-lg btn-icon" href="https://www.facebook.com/ULTRAS.SFAXIENS.07" rel="tooltip" title="My Facebook Account"><i class="fa fa-facebook"></i></a>
+                                    <a class="btn btn-default btn-round btn-lg btn-icon" href="https://www.instagram.com/ultrassfaxiens07/?hl=fr" rel="tooltip" title="My Instagram Account"><i class="fa fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="carte">
+                <div class="container cc-reference">
+                    <div class="h4 mb-4 text-center title">Carte Membre</div>
+                    <div class="card" data-aos="zoom-in">
+                        <div class="carousel slide" id="cc-Indicators" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li class="active" data-target="#cc-Indicators" data-slide-to="0"></li>
+                                <li data-target="#cc-Indicators" data-slide-to="1"></li>
+                                <li data-target="#cc-Indicators" data-slide-to="2"></li>
+                                <li data-target="#cc-Indicators" data-slide-to="3"></li>
+                                <li data-target="#cc-Indicators" data-slide-to="4"></li>
+                                <li data-target="#cc-Indicators" data-slide-to="5"></li>
+
+                            </ol>
+
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/carte/carte20192020.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Carte Membre</div>
+                                            <p class="category">2019/2020</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item ">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/carte/carte20182019.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Carte Membre</div>
+                                            <p class="category">2018/2019</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item ">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/carte/carte20172018.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Carte Membre</div>
+                                            <p class="category">2017/2018</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="carousel-item">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/carte/2016carte.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Carte Membre</div>
+                                            <p class="category">2016/2017</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="carousel-item">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/carte/carte2014.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Carte Membre</div>
+                                            <p class="category">2014/2015</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="carousel-item">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/carte/20092010.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Carte Membre</div>
+                                            <p class="category">2009/2010</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section" id="Hiver">
+                <div class="container cc-reference">
+                    <div class="h4 mb-4 text-center title">Produit Hiver</div>
+                    <div class="card" data-aos="zoom-in">
+                        <div class="carousel slide" id="cc-Hiver" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li class="active" data-target="#cc-Hiver" data-slide-to="0"></li>
+                                <li data-target="#cc-Hiver" data-slide-to="1"></li>
+                                <li data-target="#cc-Hiver" data-slide-to="2"></li>
+                                <li data-target="#cc-Hiver" data-slide-to="3"></li>
+
+
+                            </ol>
+
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/Hiver/22decembre209.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Produit Hiver</div>
+                                            <p class="category">2019/2020</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item ">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/Hiver/9fevrier2018.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Produit Hiver</div>
+                                            <p class="category">2018/2019</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item ">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/Hiver/24Decembre2013.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Produit Hiver</div>
+                                            <p class="category">2013/2014</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="carousel-item">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/Hiver/10mars2010.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Produit Hiver</div>
+                                            <p class="category">2010/2011</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section" id="Ete">
+                <div class="container cc-reference">
+                    <div class="h4 mb-4 text-center title">Produit Etè</div>
+                    <div class="card" data-aos="zoom-in">
+                        <div class="carousel slide" id="cc-Ete" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li class="active" data-target="#cc-Ete" data-slide-to="0"></li>
+                                <li data-target="#cc-Ete" data-slide-to="1"></li>
+                                <li data-target="#cc-Ete" data-slide-to="2"></li>
+
+
+
+                            </ol>
+
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/Ete/21juillet2019.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Produit Etè</div>
+                                            <p class="category">2019/2020</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item ">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/Ete/6aout2021.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Produit Etè</div>
+                                            <p class="category">2018/2019</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item ">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/Ete/28aout2011.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Produit Etè</div>
+                                            <p class="category">2011/2012</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section" id="Graffiti">
+                <div class="container cc-reference">
+                    <div class="h4 mb-4 text-center title">Graffiti</div>
+                    <div class="card" data-aos="zoom-in">
+                        <div class="carousel slide" id="cc-Graffiti" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li class="active" data-target="#cc-Graffiti" data-slide-to="0"></li>
+                                <li data-target="#cc-Graffiti" data-slide-to="1"></li>
+                                <li data-target="#cc-Graffiti" data-slide-to="2"></li>
+                                <li data-target="#cc-Graffiti" data-slide-to="3"></li>
+                                <li data-target="#cc-Graffiti" data-slide-to="4"></li>
+
+                            </ol>
+
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/Graffiti/13Mai2021.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Graffiti</div>
+                                            <p class="category">13 Mai 2021</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item ">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/Graffiti/19Avril2021.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Graffiti</div>
+                                            <p class="category">19 Avril 2021</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item ">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/Graffiti/24Aout2020.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Graffiti</div>
+                                            <p class="category">24 Aout 2020</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="carousel-item ">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/Graffiti/28Mai2020.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Graffiti</div>
+                                            <p class="category">28 Mai 2020</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item ">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/Graffiti/18septembre2018.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Graffiti</div>
+                                            <p class="category">18 Septembre 2018</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section" id="Craquage">
+                <div class="container cc-reference">
+                    <div class="h4 mb-4 text-center title">Craquage</div>
+                    <div class="card" data-aos="zoom-in">
+                        <div class="carousel slide" id="cc-Craquage" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li class="active" data-target="#cc-Craquage" data-slide-to="0"></li>
+                                <li data-target="#cc-Craquage" data-slide-to="1"></li>
+                                <li data-target="#cc-Craquage" data-slide-to="2"></li>
+
+
+                            </ol>
+
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/Craquage/7Juin2019.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Craquage</div>
+                                            <p class="category">7 Juin 2019</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item ">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/Craquage/16Avril2019.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Craquage</div>
+                                            <p class="category">16 Avril 2019</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item ">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/Craquage/20Janvier2019.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Craquage</div>
+                                            <p class="category">20 Janvier 2019</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section" id="Autre">
+                <div class="container cc-reference">
+                    <div class="h4 mb-4 text-center title">Autre</div>
+                    <div class="card" data-aos="zoom-in">
+                        <div class="carousel slide" id="cc-Autre" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li class="active" data-target="#cc-Autre" data-slide-to="0"></li>
+                                <li data-target="#cc-Autre" data-slide-to="1"></li>
+                                <li data-target="#cc-Autre" data-slide-to="2"></li>
+
+
+                            </ol>
+
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/Autre/29Octobre2019.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2"></div>
+                                            <p class="category">29 Octobre 2019</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item ">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/Autre/28Novembre2018.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2">Message</div>
+                                            <p class="category">28 Novembre 2018</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item ">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 cc-reference-header">
+                                            <img src="~/statique/images/Autre/10Avril2016.jpg" alt="Image" />
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="h5 pt-2"></div>
+                                            <p class="category">10 Avril 2016</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section" id="contact" style="background-color:black;">
+                <div class="cc-contact-information" style="background-image: url('images/background.jpg');">
+                    <div class="container">
+                        <div class="cc-contact">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="card mb-0" data-aos="zoom-in">
+                                        <div class="h4 text-center title">Contactez-nous</div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="card-body">
+
+                                                    <div class="p pb-3"><strong>N'hésitez pas à nous contacter</strong></div>
+                                                    <div class="row mb-3">
+                                                        <div class="col">
+                                                            <a href="https://www.facebook.com/ULTRAS.SFAXIENS.07">Sur notre page Facebook</a>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <div class="col">
+                                                            <a href="https://www.instagram.com/ultrassfaxiens07/?hl=fr">Sur notre page Instagram</a>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-sections" uk-modal>
+        <div class="uk-modal-dialog">
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <div class="uk-modal-header" style="background-color: black;">
+                <h2 class="uk-modal-title">Authentification</h2>
+            </div>
+            @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+            {
+                <form id="Log">
+                    <div class="uk-modal-body">
+
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
+                                    @Html.TextBoxFor(m => m.Identifiant, new { @class = "form-control", id = "em", @style = "float:left;", type = "text", required = "required", autocomplete = "off", placeholder = "Identifiant" })
+
+                                    @*<input class="form-control" type="text" name="Identifiant" placeholder="Identifiant" required="required" />*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fas fa-key"></i></span>
+                                    @Html.TextBoxFor(m => m.MotDePasse, new { @class = "form-control", id = "nn", type = "password", @style = "float:left;", required = "required", autocomplete = "off", placeholder = "Mot De Passe" })
+
+                                    @*<input class="form-control" type="password" name="MotDePasse" placeholder="Mot De Passe" required="required" />*@
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="uk-modal-footer uk-text-right" style="background-color: black;">
+                        <input type="submit" style="background-color:gray;" class="uk-button uk-button-primary" value="Se Connecter">
+
+                        @*<input class="uk-button uk-button-primary" onclick="Connecter()" style="background-color:gray;" type="button" />*@
+                    </div>
+                </form>
+            }
+            @if (TempData["Compte"] != null)
+            {
+                <script>
+                    swal.fire({
+                        title: "Attention!",
+                        text: "Compte Invalide",
+                        timer: 3000
+                    })
+                </script>
+            }
+        </div>
+    </div>
+    <script src="~/statique/js/core/jquery.3.2.1.min.js"></script>
+    <script src="~/statique/js/core/popper.min.js"></script>
+    <script src="~/statique/js/core/bootstrap.min.js"></script>
+    <script src="~/statique/js/now-ui-kit9f1e.js"></script>
+    <script src="~/statique/js/aos.js"></script>
+    <script src="~/statique/scripts/main.js"></script>
+    <script src="~/statique/scripts/utils.js"></script>
+    <script src="~/Login/js/uikit.min.js"></script>
+    <script src="~/Login/js/uikit-icons.min.js"></script>
+    
+</body>
+
+</html>

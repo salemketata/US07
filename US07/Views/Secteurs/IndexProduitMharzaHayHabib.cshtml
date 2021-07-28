@@ -1,0 +1,667 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="~/assets/plugins/datatables/datatables.min.css" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-msg.css" rel="stylesheet" />
+
+<style>
+    .page-item.active .page-link {
+        background-color: #2a3542;
+    }
+
+    .page-link {
+        color: white;
+    }
+
+    .vl {
+        border-right: 6px solid green;
+        height: 500px;
+    }
+
+    div.sticky {
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        top: 20px;
+    }
+</style>
+<div id="main">
+
+    <!-- top bar navigation -->
+    <!-- End Navigation -->
+    <!-- Left Sidebar -->
+    <div class="left main-sidebar">
+
+        <div class="sidebar-inner leftscroll">
+
+            <div id="sidebar-menu">
+
+                <ul>
+                    <li class="submenu">
+                        <a class="active" id="tables" href="#">
+                            <i class="fas fa-table"></i>
+                            <span> Secteur Mharza & Hay Habib </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="list-unstyled">
+                            <li>@Html.ActionLink(" Dashboard", "IndexMharzaHayHabib", "Secteurs", null)</li>
+
+                            <li>@Html.ActionLink(" Gestion des membres", "IndexMembreMharzaHayHabib", "Secteurs", null)</li>
+                            <li>@Html.ActionLink(" Gestion Cotisation", "IndexCaisseMharzaHayHabib", "Secteurs", null)</li>
+                            <li>@Html.ActionLink(" Gestion Produit", "IndexProduitMharzaHayHabib", "Secteurs", null)</li>
+                            <li>@Html.ActionLink(" Gestion Deplacement", "IndexDeplacementMharzaHayHabib", "Secteurs", null)</li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+
+                <div class="clearfix"></div>
+
+            </div>
+
+            <div class="clearfix"></div>
+
+        </div>
+
+    </div>
+    <!-- End Sidebar -->
+
+    <div class="content-page">
+
+        <!-- Start content -->
+        <div class="content">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+                        <div class="card-box noradius noborder " style="background-color: #2a3542;">
+                            <table id="NbProduit" cellpadding="0" cellspacing="0" class="table   ">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <h6 class="text-white text-uppercase m-b-20">Total Produit</h6>
+
+                                            <h1 id="NbProduitInp" class="m-b-20 text-white counter"></h1>
+                                        </th>
+
+
+                                    </tr>
+                                </thead>
+                            </table>
+
+
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+
+                        <div class="card-box noradius noborder " style="background-color: #2a3542;">
+                            <table id="MontantTot" cellpadding="0" cellspacing="0" class="table   ">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <h6 class="text-white text-uppercase m-b-20">Montant Collecté</h6>
+                                            <h1 id="ProduiMtn" class="m-b-20 text-white counter"></h1>
+                                        </th>
+
+
+                                    </tr>
+                                </thead>
+                            </table>
+
+
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+
+                        <div class="card-box noradius noborder " style="background-color: #2a3542;">
+                            <table id="NbS" cellpadding="0" cellspacing="0" class="table   ">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <h6 class="text-white text-uppercase m-b-20">Total Produit Taille   S</h6>
+                                            <h1 id="NbProduitS" class="m-b-20 text-white counter"></h1>
+                                        </th>
+
+
+                                    </tr>
+                                </thead>
+                            </table>
+
+
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+
+                        <div class="card-box noradius noborder " style="background-color: #2a3542;">
+                            <table id="NbM" cellpadding="0" cellspacing="0" class="table   ">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <h6 class="text-white text-uppercase m-b-20">Total Produit Taille   M</h6>
+                                            <h1 id="NbProduitM" class="m-b-20 text-white counter"></h1>
+                                        </th>
+
+
+                                    </tr>
+                                </thead>
+                            </table>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+                        <div class="card-box noradius noborder " style="background-color: #2a3542;">
+                            <table id="NbL" cellpadding="0" cellspacing="0" class="table   ">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <h6 class="text-white text-uppercase m-b-20">Total Produit Taille   L</h6>
+                                            <h1 id="NbProduitL" class="m-b-20 text-white counter"></h1>
+                                        </th>
+
+
+                                    </tr>
+                                </thead>
+                            </table>
+
+
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+
+                        <div class="card-box noradius noborder " style="background-color: #2a3542;">
+                            <table id="NbXL" cellpadding="0" cellspacing="0" class="table   ">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <h6 class="text-white text-uppercase m-b-20">Total Produit Taille   XL</h6>
+                                            <h1 id="NbProduitXL" class="m-b-20 text-white counter"></h1>
+                                        </th>
+
+
+                                    </tr>
+                                </thead>
+                            </table>
+
+
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+
+                        <div class="card-box noradius noborder " style="background-color: #2a3542;">
+                            <table id="NbXXL" cellpadding="0" cellspacing="0" class="table   ">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <h6 class="text-white text-uppercase m-b-20">Total Produit Taille   XXL</h6>
+                                            <h1 id="NbProduitXXL" class="m-b-20 text-white counter"></h1>
+                                        </th>
+
+
+                                    </tr>
+                                </thead>
+                            </table>
+
+
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+
+                        <div class="card-box noradius noborder " style="background-color: #2a3542;">
+                            <table id="NbXXXL" cellpadding="0" cellspacing="0" class="table   ">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <h6 class="text-white text-uppercase m-b-20">Total Produit Taille   XXXL</h6>
+                                            <h1 id="NbProduitXXXL" class="m-b-20 text-white counter"></h1>
+                                        </th>
+
+
+                                    </tr>
+                                </thead>
+                            </table>
+
+
+                        </div>
+                    </div>
+                </div>
+                <hr style="border-top:thick double #2a3542;" />
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="col-md-4" style="border-right: thick double #2a3542;">
+                            <div>
+                                <table id="Membre" cellpadding="0" cellspacing="0" border="0" style="width:100%;" class="table table-striped  container display">
+                                    <thead style="background-color:#2a3542;color:white;">
+                                        <tr>
+                                            <th>Carte Membre</th>
+                                            <th>Nom</th>
+                                            <th>Prénom</th>
+                                            <th>CIN</th>
+                                            <th>Date De Naissance</th>
+                                            <th>Age</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-7 align-self-center" style="border-right: thick double #2a3542;">
+                            <div>
+                                <table id="MembreProduit" cellpadding="0" cellspacing="0" border="0" style="width:100%;" class="table table-striped  container display">
+                                    <thead style="background-color:#2a3542;color:white;">
+                                        <tr>
+                                            <th>Carte Membre</th>
+                                            <th>Nom</th>
+                                            <th>Prénom</th>
+                                            <th>Taille</th>
+                                            <th>Montant Donné</th>
+                                            <th>Reste</th>
+                                        </tr>
+                                    </thead>
+
+                                </table>
+                            </div>
+                            <hr style="border-top:thick double #2a3542;" /> <h3>Formulaire Payer Produit</h3> <hr style="border-top:thick double #2a3542;" />
+
+
+                            <!-- Modal -->
+
+                            <form class="contact-form " id="AProduit">
+                                <input id="Id" name="Id" class="input-text js-input hidden" type="text">
+                                <input id="Secteur" name="Secteur" class="input-text js-input hidden" type="text">
+                                <div class="row">
+                                    <div class="form-field col-lg-6">
+                                        <input id="Nom" class="input-text js-input" type="text" disabled>
+                                        <input id="NomH" name="Nom" class="input-text js-input hidden" type="text" required>
+                                        <label class="label" for="Nom">Nom</label>
+                                    </div>
+                                    <div class="form-field col-lg-6 ">
+                                        <input id="Prenom" class="input-text js-input" type="text" disabled>
+                                        <input id="PrenomH" name="Prenom" class="input-text js-input hidden" type="text" required>
+                                        <label class="label" for="Prenom">Prénom</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-field col-lg-6">
+                                        <input id="CarteMembre" class="input-text js-input" type="text" disabled>
+                                        <input id="CarteMembreH" name="CarteMembre" class="input-text js-input hidden" type="text" required>
+                                        <label class="label" for="CarteMembre">Carte Membre</label>
+                                    </div>
+                                    <div class="form-field col-lg-6 ">
+                                        <select class="input-text js-input" name="Taille" id="Taille">
+                                            <option value="Selectionner">Selectionner Taille</option>
+                                            <option value="S">S</option>
+                                            <option value="M">M</option>
+                                            <option value="L">L</option>
+                                            <option value="XL">XL</option>
+                                            <option value="XXL">XXL</option>
+                                            <option value="XXXL">XXXL</option>
+
+                                        </select>
+                                        <label class="label" for="Taille">Taille</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-field col-lg-6">
+                                        <input  id="MntDonne" onchange="MontantVerifDonne()" name="MntDonnee" class="input-text js-input" type="text" required>
+                                        <label class="label" for="MntDonne">Montant Donné</label>
+                                    </div>
+                                    <div class="form-field col-lg-6 ">
+                                        <input onchange="MontantVerifReste()" id="MntReste" class="input-text js-input" type="text" name="MntReste">
+                                        <label class="label" for="Credit">Reste du montant</label>
+                                    </div>
+                                </div>
+
+
+                            </form>
+
+                        </div>
+                        <div class="col-md-1  sticky">
+                            <div class="btn-group-vertical sticky">
+                                <input type="button"  onclick="AjouterProduit()" class="btn btn-primary" id="Ajouter" style="background-color: #2a3542;float:right;border:#415A7C;margin-bottom: 10px;" value="Ajouter">
+                                <input type="button" onclick="ModifierProduit()" class="btn btn-primary" id="Enrg" style="background-color: #2a3542;float:right;border:#415A7C;margin-bottom: 10px;" value="Enregistrer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+                <!-- end row -->
+                <!-- end row -->
+                <!-- end row-->
+
+            </div>
+            <!-- END container-fluid -->
+
+        </div>
+        <!-- END content -->
+
+    </div>
+    <!-- END content-page -->
+
+
+
+
+
+</div>
+
+@section scripts
+{
+
+    <script src="~/assets/plugins/datatables/datatables.min.js"></script>
+    <script src="~/assets/data/data_datatables.js"></script>
+    <script src="~/assets/js/jquery.maskedinput.min.js"></script>
+    <script src="~/Content/bootstrap-msg.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js" integrity="sha512-K3MtzSFJk6kgiFxCXXQKH6BbyBrTkTDf7E6kFh3xBZ2QNMtb6cU/RstENgQkdSLkAZeH/zAtzkxJOTTd8BqpHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/assets/js/jquery.maskMoney.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#AProduit #MntDonne').maskMoney({ precision: 3, decimal: ',', thousands: '' });
+            $('#AProduit #MntReste').maskMoney({ precision: 3, decimal: ',', thousands: '' });
+            $("#Ajouter").prop('disabled', true);
+            $("#Enrg").prop('disabled', true);
+            var tab = $("#Membre").DataTable({
+                "paging": true,
+                "bAutoWidth": true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/French.json"
+                },
+                "sScrollY": "480",
+                "sScrollX": false,
+                ajax: {
+                    url: "/api/sec/GetMembreMharza",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "carteMembre"
+                    },
+                    {
+                        data: "nom"
+                    },
+                    {
+                        data: "prenom"
+                    },
+                    {
+                        data: "carteIdentite"
+                    },
+                    {
+                        data: "dateDeNaissance",
+                        "render": function (data, type, row) {
+                            return moment(new Date(data).toString()).format('DD-MM-YYYY');
+                        }
+                    },
+
+                    {
+                        data: "age"
+
+                    }
+                ]
+            });
+            var table = $("#MembreProduit").DataTable({
+                "paging": true,
+                "bAutoWidth": true,
+                "destroy": true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/French.json"
+                },
+                "sScrollY": "135",
+                "sScrollX": false,
+                ajax: {
+                    url: "/api/sec/GetProduitMharza",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "carteMembre"
+                    },
+                    {
+                        data: "nom"
+                    },
+                    {
+                        data: "prenom"
+                    },
+                    {
+                        data: "taille"
+                    },
+                    {
+                        data: "mntDonnee"
+                    },
+
+                    {
+                        data: "mntReste"
+
+                    }
+                ]
+            });
+            
+            $('#Membre tbody').on('click', 'tr', function () {
+
+                var data = tab.row(this).data();
+                $("#Ajouter").prop('disabled', false);
+                $("#Enrg").prop('disabled', true);
+                $("#AProduit #Nom").val(data.nom);
+                $("#AProduit #Prenom").val(data.prenom);
+                $("#AProduit #CarteMembre").val(data.carteMembre);
+                $("#AProduit #Secteur").val(data.secteur);
+                $("#AProduit #NomH").val(data.nom);
+                $("#AProduit #PrenomH").val(data.prenom);
+                $("#AProduit #CarteMembreH").val(data.carteMembre);
+                $("#AProduit #Id").val(null);
+                $("#AProduit #MntDonne").val(null);
+                $("#AProduit #Taille").val(null);
+                $("#AProduit #MntReste").val(null);
+
+
+            });
+            $('#MembreProduit tbody').on('click', 'tr', function () {
+                $("#Enrg").prop('disabled', false);
+                $("#Ajouter").prop('disabled', true);
+                var dat = table.row(this).data();
+                console.log(dat);
+                $("#AProduit #Nom").val(dat.nom);
+                $("#AProduit #Prenom").val(dat.prenom);
+                $("#AProduit #CarteMembre").val(dat.carteMembre);
+                $("#AProduit #Secteur").val(dat.secteur);
+                $("#AProduit #NomH").val(dat.nom);
+                $("#AProduit #PrenomH").val(dat.prenom);
+                $("#AProduit #CarteMembreH").val(dat.carteMembre);
+                $("#AProduit #Id").val(dat.id);
+                $("#AProduit #MntDonne").val(dat.mntDonnee);
+                $("#AProduit #Taille").val(dat.taille);
+                $("#AProduit #MntReste").val(dat.mntReste);
+                localStorage.setItem("Reste", document.getElementById("MntReste").value.replace(",", "."));
+                localStorage.setItem("Donne", document.getElementById("MntDonne").value.replace(",", "."));
+            });
+            $.ajax({
+                type: 'GET',
+                url: '/api/Sec/GetNbProduitMharza',
+                success: function (result) {
+                    document.getElementById("NbProduitInp").innerHTML = result;
+                }
+            });
+            $.ajax({
+                type: 'GET',
+                url: '/api/Sec/GetNbProduitSMharza',
+                success: function (result) {
+                    document.getElementById("NbProduitS").innerHTML = result;
+                }
+            });
+            $.ajax({
+                type: 'GET',
+                url: '/api/Sec/GetNbProduitMMharza',
+                success: function (result) {
+                    document.getElementById("NbProduitM").innerHTML = result;
+                }
+            });
+            $.ajax({
+                type: 'GET',
+                url: '/api/Sec/GetNbProduitLMharza',
+                success: function (result) {
+                    document.getElementById("NbProduitL").innerHTML = result;
+                }
+            });
+            $.ajax({
+                type: 'GET',
+                url: '/api/Sec/GetNbProduitXLMharza',
+                success: function (result) {
+                    document.getElementById("NbProduitXL").innerHTML = result;
+                }
+            });
+            $.ajax({
+                type: 'GET',
+                url: '/api/Sec/GetNbProduitXXLMharza',
+                success: function (result) {
+                    document.getElementById("NbProduitXXL").innerHTML = result;
+                }
+            });
+            $.ajax({
+                type: 'GET',
+                url: '/api/Sec/GetNbProduitXXXLMharza',
+                success: function (result) {
+                    document.getElementById("NbProduitXXXL").innerHTML = result;
+                }
+            });
+            $.ajax({
+                type: 'GET',
+                url: '/api/Sec/GetMontantProduitMharza',
+                success: function (result) {
+                    document.getElementById("ProduiMtn").innerHTML = result.toFixed(3);
+                }
+            });
+        });
+        function AjouterProduit() {
+            if ($("#AProduit #MntDonne").val() == "" || $("#AProduit #Taille").val() == "Selectionner") {
+
+                swal.fire({
+                    title: "Attention!",
+                    text: "Remplir les champs",
+                    timer: 3000
+                })
+            } else {
+                var Pro = [];
+                Pro.push(document.getElementById("CarteMembreH").value);
+                var dataToSend = JSON.stringify(Pro);
+                $.get(
+                    "/api/Sec/GetMembreProduit",
+                    {
+                        IDss: dataToSend
+                    },
+                    function (result) {
+                        if (result[0] != null) {
+                            swal.fire({
+                                title: "Attention!",
+                                text: "Deja le paiement de ce produit existe",
+                                timer: 3000
+                            })
+                            $("#Ajouter").prop('disabled', true);
+                        }
+                        else {
+                            $("#Ajouter").prop('disabled', false);
+                            $.ajax({
+                                url: "/Secteurs/EnregistrerProduit",
+                                type: "POST",
+                                dataType: 'JSON',
+                                data: $("#AProduit").serialize(),
+
+                                success: function (result) {
+                                    $("#AProduit")[0].reset();
+                                    window.location.reload();
+
+                                },
+                                error: function (err) {
+                                    Msg.error("Caisse n'est pas ajouté", 3000);
+                                }
+                            });
+                        }
+
+                    }
+                )
+
+            }
+
+        }
+        function ModifierProduit() {
+            if ($("#AProduit #MntDonne").val() == "" || $("#AProduit #Taille").val() == "Selectionner") {
+
+                swal.fire({
+                    title: "Attention!",
+                    text: "Remplir les champs",
+                    timer: 3000
+                })
+            } else {
+
+
+
+                    $("#Enrg").prop('disabled', false);
+                    $.ajax({
+                        url: "/Secteurs/EnregistrerProduit",
+                        type: "POST",
+                        dataType: 'JSON',
+                        data: $("#AProduit").serialize(),
+
+                        success: function (result) {
+                            $("#AProduit")[0].reset();
+                            window.location.reload();
+
+                        },
+                        error: function (err) {
+                            Msg.error("Caisse n'est pas ajouté", 3000);
+                        }
+                    });
+                
+                }
+                            
+
+                    
+                
+
+        }
+        function MontantVerifDonne() {
+            var MntDon = document.getElementById("MntDonne").value.replace(",", ".");
+            var MntDonA = localStorage.getItem("Donne");
+            var MntRes = localStorage.getItem("Reste");
+            if (Number(parseFloat(MntDon).toFixed(3)) < Number(parseFloat(MntDonA).toFixed(3))) {
+                swal.fire({
+                    title: "Attention!",
+                    text: "Montant saisie inférieur au montant donnée précédent",
+                    timer: 3000
+                })
+
+                $("#Enrg").prop('disabled', true);
+            }
+            else {
+                $("#Enrg").prop('disabled', false);
+            }
+        }
+        function MontantVerifReste() {
+            var MntRes = document.getElementById("MntReste").value.replace(",", ".");
+            var MntDonA = localStorage.getItem("Donne");
+            var MntResA = localStorage.getItem("Reste");
+            if (Number(parseFloat(MntRes).toFixed(3)) > Number(parseFloat(MntResA).toFixed(3))) {
+                swal.fire({
+                    title: "Attention!",
+                    text: "Montant saisie supérieur au montant donnée précédent",
+                    timer: 3000
+                })
+
+                $("#Enrg").prop('disabled', true);
+            }
+            else {
+                $("#Enrg").prop('disabled', false);
+            }
+        }
+    </script>
+}
+

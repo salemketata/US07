@@ -1,0 +1,231 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="~/assets/plugins/datatables/datatables.min.css" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-msg.css" rel="stylesheet" />
+<style>
+    .page-item.active .page-link {
+        background-color: #2a3542;
+    }
+
+    .page-link {
+        color: white;
+    }
+
+    .vl {
+        border-right: 6px solid green;
+        height: 500px;
+    }
+
+    div.sticky {
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        top: 20px;
+    }
+</style>
+<div id="main">
+
+    <!-- top bar navigation -->
+    <!-- End Navigation -->
+    <!-- Left Sidebar -->
+    <div class="left main-sidebar">
+
+        <div class="sidebar-inner leftscroll">
+
+            <div id="sidebar-menu">
+
+                <ul>
+                    <li class="submenu">
+                        <a class="active" id="tables" href="#">
+                            <i class="fas fa-table"></i>
+                            <span> Administration </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="list-unstyled">
+                            <li>@Html.ActionLink(" Dashboard", "Index", "Administration", null)</li>
+                            <li>@Html.ActionLink(" Gestion des comptes", "GestionCompte", "Administration", null)</li>
+                            <li>@Html.ActionLink(" Gestion Paramétres", "Parametrage", "Administration", null)</li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+
+                <div class="clearfix"></div>
+
+            </div>
+
+            <div class="clearfix"></div>
+
+        </div>
+
+    </div>
+    <!-- End Sidebar -->
+
+    <div class="content-page">
+
+        <!-- Start content -->
+        <div class="content">
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="col-md-12" >
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+
+                                    <div class="card-box noradius noborder " style="background-color: #2a3542;">
+                                        <table id="Compte" cellpadding="0" cellspacing="0" class="table   ">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <h6 class="text-white text-uppercase m-b-20">Nombre Caissier Groupe</h6>
+                                                        <h1 id="NbCompte" class="m-b-20 text-white counter"></h1>
+                                                    </th>
+
+
+                                                </tr>
+                                            </thead>
+                                        </table>
+
+
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+
+                                    <div class="card-box noradius noborder " style="background-color: #2a3542;">
+                                        <table id="Staff" cellpadding="0" cellspacing="0" class="table   ">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <h6 class="text-white text-uppercase m-b-20">Nombre Staff</h6>
+                                                        <h1 id="NbStaff" class="m-b-20 text-white counter"></h1>
+                                                    </th>
+
+
+                                                </tr>
+                                            </thead>
+                                        </table>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+
+                                    <div class="card-box noradius noborder " style="background-color: #2a3542;">
+                                        <table id="CaissierGrp" cellpadding="0" cellspacing="0" class="table   ">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <h6 class="text-white text-uppercase m-b-20">Nombre Caissier Groupe</h6>
+                                                        <h1 id="NbCaissierGrp" class="m-b-20 text-white counter"></h1>
+                                                    </th>
+
+
+                                                </tr>
+                                            </thead>
+                                        </table>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+
+                                    <div class="card-box noradius noborder " style="background-color: #2a3542;">
+                                        <table id="Chef" cellpadding="0" cellspacing="0" class="table   ">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <h6 class="text-white text-uppercase m-b-20">Nombre Chef</h6>
+                                                        <h1 id="NbChef" class="m-b-20 text-white counter"></h1>
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                        </table>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                           
+                        </div>
+
+                        
+                    </div>
+                </div>
+                <!-- end row -->
+                <!-- end row -->
+                <!-- end row -->
+                <!-- end row-->
+
+            </div>
+            <!-- END container-fluid -->
+
+        </div>
+        <!-- END content -->
+
+    </div>
+    <!-- END content-page -->
+
+
+
+
+
+</div>
+
+@section scripts
+{
+    <script src="~/assets/plugins/datatables/datatables.min.js"></script>
+    <script src="~/assets/data/data_datatables.js"></script>
+    <script src="~/assets/js/jquery.maskedinput.min.js"></script>
+    <script src="~/Content/bootstrap-msg.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js" integrity="sha512-K3MtzSFJk6kgiFxCXXQKH6BbyBrTkTDf7E6kFh3xBZ2QNMtb6cU/RstENgQkdSLkAZeH/zAtzkxJOTTd8BqpHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/assets/js/jquery.maskMoney.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            
+            $.ajax({
+                type: 'GET',
+                url: '/api/adm/GetNbComptes',
+                success: function (result) {
+                    document.getElementById("NbCompte").innerHTML = result;
+                }
+            }); 
+            $.ajax({
+                type: 'GET',
+                url: '/api/adm/GetNbComptesStaff',
+                success: function (result) {
+                    document.getElementById("NbStaff").innerHTML = result;
+                }
+            });
+            $.ajax({
+                type: 'GET',
+                url: '/api/adm/GetNbComptesCaissier',
+                success: function (result) {
+                    document.getElementById("NbCaissierGrp").innerHTML = result;
+                }
+            });           
+            $.ajax({
+                type: 'GET',
+                url: '/api/adm/GetNbComptesChef',
+                success: function (result) {
+                    document.getElementById("NbChef").innerHTML = result;
+                }
+            });
+            
+            
+        });
+      
+    </script>
+}

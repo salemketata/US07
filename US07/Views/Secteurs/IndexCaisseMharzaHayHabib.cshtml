@@ -1,0 +1,432 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="~/assets/plugins/datatables/datatables.min.css" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-msg.css" rel="stylesheet" />
+<style>
+    .page-item.active .page-link {
+        background-color: #2a3542;
+    }
+
+    .page-link {
+        color: white;
+    }
+
+    .vl {
+        border-right: 6px solid green;
+        height: 500px;
+    }
+
+    div.sticky {
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        top: 20px;
+    }
+</style>
+<div id="main">
+
+    <!-- top bar navigation -->
+    
+    <!-- End Navigation -->
+    <!-- Left Sidebar -->
+    <div class="left main-sidebar">
+
+        <div class="sidebar-inner leftscroll">
+
+            <div id="sidebar-menu">
+
+                <ul>
+                    <li class="submenu">
+                        <a class="active" id="tables" href="#">
+                            <i class="fas fa-table"></i>
+                            <span> Secteur Mharza & Hay Habib </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="list-unstyled">
+                            <li>@Html.ActionLink(" Dashboard", "IndexMharzaHayHabib", "Secteurs", null)</li>
+
+                            <li>@Html.ActionLink(" Gestion des membres", "IndexMembreMharzaHayHabib", "Secteurs", null)</li>
+                            <li>@Html.ActionLink(" Gestion Cotisation", "IndexCaisseMharzaHayHabib", "Secteurs", null)</li>
+                            <li>@Html.ActionLink(" Gestion Produit", "IndexProduitMharzaHayHabib", "Secteurs", null)</li>
+                            <li>@Html.ActionLink(" Gestion Deplacement", "IndexDeplacementMharzaHayHabib", "Secteurs", null)</li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+
+                <div class="clearfix"></div>
+
+            </div>
+
+            <div class="clearfix"></div>
+
+        </div>
+
+    </div>
+    <!-- End Sidebar -->
+
+    <div class="content-page">
+
+        <!-- Start content -->
+        <div class="content">
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="col-md-4" style="border-right: thick double #2a3542;">
+                            <div>
+                                <table id="Membre" cellpadding="0" cellspacing="0" border="0" style="width:100%;" class="table table-striped  container display">
+                                    <thead style="background-color:#2a3542;color:white;">
+                                        <tr>
+                                            <th>Carte Membre</th>
+                                            <th>Nom</th>
+                                            <th>Prénom</th>
+                                            <th>CIN</th>
+                                            <th>Date De Naissance</th>
+                                            <th>Age</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-7 align-self-center" style="border-right: thick double #2a3542;">
+                            <div>
+                                <table id="MembreCollecte" cellpadding="0" cellspacing="0" border="0" style="width:100%;" class="table table-striped  container display">
+                                    <thead style="background-color:#2a3542;color:white;">
+                                        <tr>
+                                            <th>Carte Membre</th>
+                                            <th>Nom</th>
+                                            <th>Prénom</th>
+                                            <th>Mois</th>
+                                            <th>Collecte</th>
+                                            <th>Credit</th>
+                                        </tr>
+                                    </thead>
+
+                                </table>
+                            </div>
+                            <hr style="border-top:thick double #2a3542;" /> <h3>Formulaire Ajout Collecte</h3> <hr style="border-top:thick double #2a3542;" />
+
+
+                            <!-- Modal -->
+
+                            <form class="contact-form " id="ACollecte">
+                                <input id="Id" name="Id" class="input-text js-input hidden" type="text">
+                                <input id="Secteur" name="Secteur" class="input-text js-input hidden" type="text">
+                                <div class="row">
+                                    <div class="form-field col-lg-6">
+                                        <input id="Nom" class="input-text js-input" type="text" disabled>
+                                        <input id="NomH" name="Nom" class="input-text js-input hidden" type="text" required>
+                                        <label class="label" for="Nom">Nom</label>
+                                    </div>
+                                    <div class="form-field col-lg-6 ">
+                                        <input id="Prenom" class="input-text js-input" type="text" disabled>
+                                        <input id="PrenomH" name="Prenom" class="input-text js-input hidden" type="text" required>
+                                        <label class="label" for="Prenom">Prénom</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-field col-lg-6">
+                                        <input id="CarteMembre" class="input-text js-input" type="text" disabled>
+                                        <input id="CarteMembreH" name="CarteMembre" class="input-text js-input hidden" type="text" required>
+                                        <label class="label" for="CarteMembre">Carte Membre</label>
+                                    </div>
+                                    <div class="form-field col-lg-6 ">
+                                        <select onchange="VerifMois(this)" class="input-text js-input" name="Mois" id="Mois">
+                                            <option value="Selectionner">Selectionner un mois</option>
+                                            <option value="Janvier">Janvier</option>
+                                            <option value="Fevrier">Fevrier</option>
+                                            <option value="Mars">Mars</option>
+                                            <option value="Avril">Avril</option>
+                                            <option value="Mai">Mai</option>
+                                            <option value="Juin">Juin</option>
+                                            <option value="Juillet">Juillet</option>
+                                            <option value="Aout">Aout</option>
+                                            <option value="Septembre">Septembre</option>
+                                            <option value="Octobre">Octobre</option>
+                                            <option value="Novembre">Novembre</option>
+                                            <option value="Decembre">Decembre</option>
+                                        </select>
+                                        <label class="label" for="Mois">Mois</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-field col-lg-6">
+                                        <input id="Collecte" onchange="RemplirCredit()" name="Collecte" class="input-text js-input" type="text" required>
+                                        <label class="label" for="Collecte">Collecte</label>
+                                    </div>
+                                    <div class="form-field col-lg-6 ">
+                                        <input id="Credit" class="input-text js-input" type="text" disabled>
+                                        <input id="CreditH" name="Credit" class="input-text js-input hidden" type="text" required>
+                                        <label class="label" for="Credit">Credit</label>
+                                    </div>
+                                </div>
+
+
+                            </form>
+
+                        </div>
+                        <div class="col-md-1  sticky">
+                            <div class="btn-group-vertical sticky">
+                                <input type="button" onclick="AjouterCaisse()" class="btn btn-primary" id="Ajouter" style="background-color: #2a3542;float:right;border:#415A7C;margin-bottom: 10px;" value="Ajouter">
+                                <input type="button" onclick="AjouterCaisse()" class="btn btn-primary" id="Enrg" style="background-color: #2a3542;float:right;border:#415A7C;margin-bottom: 10px;" value="Enregistrer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+                <!-- end row -->
+                <!-- end row -->
+                <!-- end row-->
+
+            </div>
+            <!-- END container-fluid -->
+
+        </div>
+        <!-- END content -->
+
+    </div>
+    <!-- END content-page -->
+
+
+
+
+
+</div>
+@section scripts
+{
+    <script src="~/assets/plugins/datatables/datatables.min.js"></script>
+    <script src="~/assets/data/data_datatables.js"></script>
+    <script src="~/assets/js/jquery.maskedinput.min.js"></script>
+    <script src="~/Content/bootstrap-msg.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js" integrity="sha512-K3MtzSFJk6kgiFxCXXQKH6BbyBrTkTDf7E6kFh3xBZ2QNMtb6cU/RstENgQkdSLkAZeH/zAtzkxJOTTd8BqpHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/assets/js/jquery.maskMoney.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#ACollecte #Collecte').maskMoney({ precision: 3, decimal: ',', thousands: '' });
+            $('#ACollecte #Credit').maskMoney({ precision: 3, decimal: ',', thousands: '' });
+            $("#Ajouter").prop('disabled', true);
+            $("#Enrg").prop('disabled', true);
+            var tab = $("#Membre").DataTable({
+                "paging": true,
+                "bAutoWidth": true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/French.json"
+                },
+                "sScrollY": "480",
+                "sScrollX": false,
+                ajax: {
+                    url: "/api/sec/GetMembreMharza",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "carteMembre"
+                    },
+                    {
+                        data: "nom"
+                    },
+                    {
+                        data: "prenom"
+                    },
+                    {
+                        data: "carteIdentite"
+                    },
+                    {
+                        data: "dateDeNaissance",
+                        "render": function (data, type, row) {
+                            return moment(new Date(data).toString()).format('DD-MM-YYYY');
+                        }
+                    },
+
+                    {
+                        data: "age"
+
+                    }
+                ]
+            });
+            var table = $("#MembreCollecte").DataTable({
+                "paging": true,
+                "bAutoWidth": true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/French.json"
+                },
+                "sScrollY": "135",
+                "sScrollX": false
+                //ajax: {
+                //    url: "/api/sec/GetMembreMharza",
+                //    dataSrc: ""
+                //},
+                //columns: [
+                //    {
+                //        data: "carteMembre"
+                //    },
+                //    {
+                //        data: "nom"
+                //    },
+                //    {
+                //        data: "prenom"
+                //    },
+                //    {
+                //        data: "carteIdentite"
+                //    },
+                //    {
+                //        data: "dateDeNaissance",
+                //        "render": function (data, type, row) {
+                //            return moment(new Date(data).toString()).format('DD-MM-YYYY');
+                //        }
+                //    },
+
+                //    {
+                //        data: "age"
+
+                //    }
+                //]
+            });
+
+            $('#Membre tbody').on('click', 'tr', function () {
+                
+                var data = tab.row(this).data();
+                var table = $("#MembreCollecte").DataTable({
+                    "paging": true,
+                    "bAutoWidth": true,
+                    "destroy": true,
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/French.json"
+                    },
+                    "sScrollY": "135",
+                    "sScrollX": false,
+                    ajax: {
+                        url: "/api/sec/GetCollecteMembre/"+data.carteMembre,
+                        dataSrc: ""
+                    },
+                    columns: [
+                        {
+                            data: "carteMembre"
+                        },
+                        {
+                            data: "nom"
+                        },
+                        {
+                            data: "prenom"
+                        },
+                        {
+                            data: "mois"
+                        },
+                        {
+                            data: "collecte"
+                        },
+
+                        {
+                            data: "credit"
+
+                        }
+                    ]
+                });
+                
+                $("#ACollecte #Nom").val(data.nom);
+                $("#ACollecte #Prenom").val(data.prenom);
+                $("#ACollecte #CarteMembre").val(data.carteMembre);
+                $("#ACollecte #Secteur").val(data.secteur);
+                $("#ACollecte #NomH").val(data.nom);
+                $("#ACollecte #PrenomH").val(data.prenom);
+                $("#ACollecte #CarteMembreH").val(data.carteMembre);
+                $("#ACollecte #Id").val(null);
+                $("#ACollecte #Collecte").val(null);
+                $("#ACollecte #Mois").val(null);
+                $("#ACollecte #Credit").val(null);
+                setTimeout(function () {
+                    var d = table.rows().data();
+                    if (d.length < 12) {
+                        $("#Ajouter").prop('disabled', false);
+                    }
+                    else {
+                        $("#Ajouter").prop('disabled', true);
+                    }   
+
+                }, 300);
+                $('#MembreCollecte tbody').on('click', 'tr', function () {
+                    $("#Enrg").prop('disabled', false);
+                    $("#Ajouter").prop('disabled', true);
+                    var dat = table.row(this).data();
+                    console.log(dat);
+                    $("#ACollecte #Id").val(dat.id);
+                    $("#ACollecte #Collecte").val(dat.collecte);
+                    $("#ACollecte #Mois").val(dat.mois);
+                    $("#ACollecte #Credit").val(dat.credit);
+                });
+            });
+          
+        });
+        function AjouterCaisse() {
+            if ($("#ACollecte #Collecte").val() == "" || $("#ACollecte #Mois").val() == "Selectionner") {
+                swal.fire({
+                    title: "Attention!",
+                    text: "Remplir les champs",
+                    timer: 3000
+                })
+            } else {
+                $.ajax({
+                    url: "/Secteurs/EnregistrerCollecter",
+                    type: "POST",
+                    dataType: 'JSON',
+                    data: $("#ACollecte").serialize(),
+
+                    success: function (result) {
+                        $("#ACollecte")[0].reset();
+                        window.location.reload();
+
+                    },
+                    error: function (err) {
+                        Msg.error("Caisse n'est pas ajouté", 3000);
+                    }
+                });
+            }
+           
+        }
+        function RemplirCredit() {
+            var col = document.getElementById("Collecte").value;
+            cre = 10, 000;
+            var res = cre - col.replace(",", ".");
+            document.getElementById("Credit").value = res.toString().replace(".", ",");
+            document.getElementById("CreditH").value = res.toString().replace(".", ",");
+        }
+        function VerifMois(_this) {
+            var Col = [];
+            Col.push(_this.value);
+            Col.push(document.getElementById("CarteMembreH").value);
+            var dataToSend = JSON.stringify(Col);
+            $.get(
+                "/api/Sec/GetMois",
+                {
+                    IDss: dataToSend
+                },
+                function (result) {
+                    if (result[0]  != null) {
+                        swal.fire({
+                            title: "Attention!",
+                            text: "Deja le paiement de ce mois existe",
+                            timer: 3000
+                        })
+                        $("#Ajouter").prop('disabled', true);
+                    }
+                    else {
+                        $("#Ajouter").prop('disabled', false);
+                    }
+
+                }
+            )
+        }
+    </script>
+}
+

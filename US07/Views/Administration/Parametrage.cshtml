@@ -1,0 +1,304 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="stylesheet" type="text/css" href="~/assets/plugins/datatables/datatables.min.css" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-msg.css" rel="stylesheet" />
+
+
+<style>
+    .page-item.active .page-link {
+        background-color: #2a3542;
+    }
+
+    .page-link {
+        color: white;
+    }
+</style>
+<div id="main">
+
+    <!-- top bar navigation -->
+    <!-- End Navigation -->
+    <!-- Left Sidebar -->
+    <div class="left main-sidebar">
+
+        <div class="sidebar-inner leftscroll">
+
+            <div id="sidebar-menu">
+
+                <ul>
+                    <li class="submenu">
+                        <a class="active" id="tables" href="#">
+                            <i class="fas fa-table"></i>
+                            <span> Administration </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="list-unstyled">
+                            <li>@Html.ActionLink(" Dashboard", "Index", "Administration", null)</li>
+                            <li>@Html.ActionLink(" Gestion des comptes", "GestionCompte", "Administration", null)</li>
+                            <li>@Html.ActionLink(" Gestion Paramétres", "Parametrage", "Administration", null)</li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+
+                <div class="clearfix"></div>
+
+            </div>
+
+            <div class="clearfix"></div>
+
+        </div>
+
+    </div>
+    <!-- End Sidebar -->
+
+    <div class="content-page">
+
+        <!-- Start content -->
+        <div class="content">
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-xl-12">
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <button type="button" class="btn btn-primary" style="float:right;background-color:#2a3542;border-color:#2a3542;" data-toggle="modal" data-target="#exampleModal">
+                                        Ajouter Paramétre
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <form class="contact-form row" id="AParametre">
+
+                                                <div class="modal-content">
+
+                                                    <div class="modal-header" style="background-color: #2a3542;">
+                                                        <h5 class="modal-title" style="color:white;" id="exampleModalLabel">Ajouter Membre</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+
+
+                                                        <div class="row">
+                                                            <div class="form-field col-lg-6">
+                                                                <input id="Intitule" name="Intitule" class="input-text js-input" type="text" required>
+                                                                <label class="label" for="Intitule">Intitule</label>
+                                                            </div>
+                                                            <div class="form-field col-lg-6 ">
+                                                                <input id="Montant" name="Montant" class="input-text js-input" type="text" required>
+                                                                <label class="label" for="Montant">Montant</label>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                                        <button type="button" style="background-color:#2a3542;border-color:#2a3542;" onclick="AjouterParametre()" class="btn btn-primary btnAjotrer">Enregistrer</button>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="Parametre" cellpadding="0" cellspacing="0" border="0" style="width:100%;" class="table table-striped  container display">
+                                            <thead style="background-color:#2a3542;color:white;">
+                                                <tr>
+                                                    <th>Intitule</th>
+                                                    <th>Montant</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <!-- end table-responsive-->
+
+                                </div>
+                                <!-- end card-body-->
+
+                            </div>
+                            <!-- end card-->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+                <!-- end row -->
+                <!-- end row -->
+                <!-- end row-->
+
+            </div>
+            <!-- END container-fluid -->
+
+        </div>
+        <!-- END content -->
+
+    </div>
+    <!-- END content-page -->
+
+
+
+
+
+</div>
+<div class="modal fade" id="ModifierParametre" tabindex="-1" role="dialog" aria-labelledby="ModifierMembre" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form class="contact-form row" id="MParametre">
+            <div class="modal-content">
+
+                <div class="modal-header" style="background-color: #2a3542;">
+                    <h5 class="modal-title" style="color:white;" id="exampleModalLabel">Modifier Membre</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <input id="Id" name="Id" class="input-text js-input hidden" type="text">
+                <div class="modal-body">
+
+
+                    <div class="row">
+                        <div class="form-field col-lg-6">
+                            <input id="Intitule" name="Intitule" class="input-text js-input" type="text" required>
+                            <label class="label" for="Intitule">Intitule</label>
+                        </div>
+                        <div class="form-field col-lg-6 ">
+                            <input id="Montant" name="Montant" class="input-text js-input" type="text" required>
+                            <label class="label" for="Montant">Montant</label>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="button" style="background-color:#2a3542;border-color:#2a3542;" onclick="ModifierParametre()" class="btn btn-primary btnModifier">Enregistrer</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts
+{
+
+
+
+
+
+
+
+
+    <script src="~/assets/plugins/datatables/datatables.min.js"></script>
+    <script src="~/assets/data/data_datatables.js"></script>
+    <script src="~/assets/js/jquery.maskedinput.min.js"></script>
+    <script src="~/Content/bootstrap-msg.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js" integrity="sha512-K3MtzSFJk6kgiFxCXXQKH6BbyBrTkTDf7E6kFh3xBZ2QNMtb6cU/RstENgQkdSLkAZeH/zAtzkxJOTTd8BqpHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/assets/js/jquery.maskMoney.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#AParametre #Montant').maskMoney({ precision: 3, decimal: ',', thousands: '' });
+            $('#MParametre #Montant').maskMoney({ precision: 3, decimal: ',', thousands: '' });
+            var tab = $("#Parametre").DataTable({
+                "paging": true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/French.json"
+                },
+                ajax: {
+                    url: "/api/adm/GetParametrege",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "intitule"
+                    },
+                    {
+                        data: "montant"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+
+                            return "<button href='#ModifierParametre' class= 'edit  btn btn-warning glyphicon glyphicon-pencil '  style = 'width: 40px;' data-toggle='modal'></button><input type='hidden' class='id' value='" + data + "'/>";
+
+                        }
+                    }
+                ]
+            });
+            $("#Parametre").on('click', '.edit', function () {
+
+                var id = $(this).parent().find('.id').val();
+                $.ajax({
+                    type: 'GET',
+                    url: '/api/adm/GetParametre/' + id,
+                    success: function (Parametre) {
+                        console.log(Parametre);
+                        $('#ModifierParametre #Id').val(Parametre[0].id);
+                        $('#ModifierParametre #Intitule').val(Parametre[0].intitule);
+                        $('#ModifierParametre #Montant').val(Parametre[0].montant);
+                    }
+                });
+            });
+
+        });
+
+        function AjouterParametre() {
+            $.ajax({
+                url: "/Administration/AjouterParametre",
+                type: "POST",
+                dataType: 'JSON',
+                data: $("#AParametre").serialize(),
+
+                success: function (result) {
+                    $("#AParametre")[0].reset();
+                    window.location.reload();
+
+                },
+                error: function (err) {
+                    Msg.error("Caisse n'est pas ajouté", 3000);
+                }
+            });
+        }
+        function ModifierParametre() {
+            $.ajax({
+                url: "/Administration/ModifierParametre",
+                type: "POST",
+                dataType: 'JSON',
+                data: $("#MParametre").serialize(),
+
+                success: function (result) {
+                    $("#MParametre")[0].reset();
+                    window.location.reload();
+
+                },
+                error: function (err) {
+                    Msg.error("Caisse n'est pas ajouté", 3000);
+                }
+            });
+        }
+
+    </script>
+}
+

@@ -1,0 +1,689 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="~/assets/plugins/datatables/datatables.min.css" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-msg.css" rel="stylesheet" />
+<style>
+    .page-item.active .page-link {
+        background-color: #2a3542;
+    }
+
+    .page-link {
+        color: white;
+    }
+
+    .vl {
+        border-right: 6px solid green;
+        height: 500px;
+    }
+
+    div.sticky {
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        top: 20px;
+    }
+
+</style>
+<div id="main">
+
+    <!-- top bar navigation -->
+    
+    <!-- End Navigation -->
+    <!-- Left Sidebar -->
+    <div class="left main-sidebar">
+
+        <div class="sidebar-inner leftscroll">
+
+            <div id="sidebar-menu">
+
+                <ul>
+                    <li class="submenu">
+                        <a class="active" id="tables" href="#">
+                            <i class="fas fa-table"></i>
+                            <span> Secteur Mharza & Hay Habib </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="list-unstyled">
+                            <li>@Html.ActionLink(" Dashboard", "IndexMharzaHayHabib", "Secteurs", null)</li>
+                            <li>@Html.ActionLink(" Gestion des membres", "IndexMembreMharzaHayHabib", "Secteurs", null)</li>
+                            <li>@Html.ActionLink(" Gestion Cotisation", "IndexCaisseMharzaHayHabib", "Secteurs", null)</li>
+                            <li>@Html.ActionLink(" Gestion Produit", "IndexProduitMharzaHayHabib", "Secteurs", null)</li>
+                            <li>@Html.ActionLink(" Gestion Deplacement", "IndexDeplacementMharzaHayHabib", "Secteurs", null)</li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+
+                <div class="clearfix"></div>
+
+            </div>
+
+            <div class="clearfix"></div>
+
+        </div>
+
+    </div>
+    <!-- End Sidebar -->
+
+    <div class="content-page">
+
+        <!-- Start content -->
+        <div class="content">
+
+            <div class="container-fluid">
+               
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="col-md-11" style="border-right: thick double #2a3542;">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+                                    <div class="card-box noradius noborder " style="background-color: #2a3542;">
+                                        <table id="Membre" cellpadding="0" cellspacing="0" class="table   ">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <h6 class="text-white text-uppercase m-b-20">Membres</h6>
+                                                        <h1 id="NbMembres" class="m-b-20 text-white counter"></h1>
+                                                    </th>
+                                                    <th>
+                                                        <i class="far fa-user float-right text-white"></i>
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                        </table>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+
+                                    <div class="card-box noradius noborder " style="background-color: #2a3542;">
+                                        <table id="Membre" cellpadding="0" cellspacing="0" class="table   ">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <h6 class="text-white text-uppercase m-b-20">Total Collecte</h6>
+                                                        <h1 id="Collecte" class="m-b-20 text-white counter"></h1>
+                                                    </th>
+                                                    <th>
+                                                        <i class="fas fa-hand-holding-usd float-right text-white"></i>
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                        </table>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+
+                                    <div class="card-box noradius noborder " style="background-color: #2a3542;">
+                                        <table id="Membre" cellpadding="0" cellspacing="0" class="table   ">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <h6 class="text-white text-uppercase m-b-20">Total Credit</h6>
+                                                        <h1 id="Credit" class="m-b-20 text-white counter"></h1>
+                                                    </th>
+                                                    <th>
+                                                        <i class="fas fa-coins float-right text-white"></i>
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                        </table>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+
+                                    <div class="card-box noradius noborder " style="background-color: #2a3542;">
+                                        <table id="Membre" cellpadding="0" cellspacing="0" class="table   ">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <h6 class="text-white text-uppercase m-b-20">Caisse</h6>
+                                                        <h1 id="Caisse" class="m-b-20 text-white counter"></h1>
+                                                    </th>
+                                                    <th>
+                                                        <i class="fas fa-cash-register float-right text-white"></i>
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                        </table>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <hr style="border-top:thick double #2a3542;" />
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-10">
+                                    <div class="card mb-3">
+                                        <div class="card-header">
+                                            <h3><i class="fas fa-chart-bar"></i> Bilan Total de collecte et Credit</h3>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <canvas id="Bilan"></canvas>
+                                        </div>
+                                    </div>
+                                    <!-- end card-->
+                                </div>
+
+                            </div>
+                            <hr style="border-top:thick double #2a3542;" />
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-5" style="border-right: thick double #2a3542;padding-right:50px;">
+                                    <h3>Les Montants entrées</h3>
+                                    <table id="Entree" cellpadding="0" cellspacing="0" border="0" style="width:100%;" class="table table-striped  container display">
+                                        <thead style="background-color:#2a3542;color:white;">
+                                            <tr>
+                                                <th>Type</th>
+                                                <th>Montant</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+
+                                    </table>
+
+                                    <!-- end card-->
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-5">
+                                    <h3>Les Montants sorties</h3>
+                                    <table id="Sortie" cellpadding="0" cellspacing="0" border="0" style="width:100%;" class="table table-striped  container display">
+                                        <thead style="background-color:#2a3542;color:white;">
+                                            <tr>
+                                                <th>Type</th>
+                                                <th>Montant</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+
+                                    </table>
+
+                                    <!-- end card-->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-1  sticky">
+                            <div class="btn-group-vertical sticky">
+                                <button type="button" class="btn btn-primary" style="float:right;background-color:#2a3542;border-color:#2a3542;" data-toggle="modal" data-target="#ModalEntree">
+                                    Ajouter Entrée
+                                </button>  <br />
+                                <button type="button" class="btn btn-primary" style="float:right;background-color:#2a3542;border-color:#2a3542;" data-toggle="modal" data-target="#ModalSortie">
+                                    Ajouter Sortie
+                                </button>  <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+                <!-- end row -->
+                <!-- end row -->
+                <!-- end row-->
+
+            </div>
+            <!-- END container-fluid -->
+
+        </div>
+        <!-- END content -->
+
+    </div>
+    <!-- END content-page -->
+
+
+
+
+
+</div>
+<div class="modal fade" id="ModalEntree" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form class="contact-form row" id="AEntree">
+
+            <div class="modal-content">
+
+                <div class="modal-header" style="background-color: #2a3542;">
+                    <h5 class="modal-title" style="color:white;" id="exampleModalLabel">Ajouter Entrée</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="form-field col-lg-6">
+                            <select class="input-text js-input" onchange="raisonE(this)" id="RaisonE" name="Raison">
+                                <option>Selectionner raison</option>
+                                <option value="Collecte Mois">Collecte Mois</option>
+                                <option value="Autre">Autre</option>
+                            </select>
+                            <label class="label" for="RaisonE">Raison</label>
+                        </div>
+                        <div class="form-field col-lg-6 ">
+                            <select  class="input-text js-input" name="Mois" id="MoisE">
+                                <option value="Selectionner">Selectionner un mois</option>
+                                <option value="Janvier">Janvier</option>
+                                <option value="Fevrier">Fevrier</option>
+                                <option value="Mars">Mars</option>
+                                <option value="Avril">Avril</option>
+                                <option value="Mai">Mai</option>
+                                <option value="Juin">Juin</option>
+                                <option value="Juillet">Juillet</option>
+                                <option value="Aout">Aout</option>
+                                <option value="Septembre">Septembre</option>
+                                <option value="Octobre">Octobre</option>
+                                <option value="Novembre">Novembre</option>
+                                <option value="Decembre">Decembre</option>
+                            </select>
+                            <label class="label" for="Mois">Mois</label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-field col-lg-6">
+                            <input id="DateE" name="Date" class="input-text js-input" type="date" required>
+                            <label class="label" for="DateE">Date</label>
+                        </div>
+                        <div class="form-field col-lg-6">
+                            <input id="IntituleE" name="Intitule" class="input-text js-input" type="text" required>
+                            <label class="label" for="IntituleE">Intitule</label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-field col-lg-6">
+                            <input id="MontantE"  name="Montant" class="input-text js-input" type="text" required>
+                            <label class="label" for="MontantE">Montant</label>
+                        </div>
+                    </div>
+                    <input id="TypeE" name="Type" value="Entree" class="input-text js-input hidden" type="text" required>
+                    <input id="SecteurE" name="Secteur" value="Mharza & Hay Habib" class="input-text js-input hidden" type="text" required>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="button" style="background-color:#2a3542;border-color:#2a3542;" onclick="AjouterTrEntree()" class="btn btn-primary btnAjotrer">Enregistrer</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" id="ModalSortie" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form class="contact-form row" id="ASortie">
+
+            <div class="modal-content">
+
+                <div class="modal-header" style="background-color: #2a3542;">
+                    <h5 class="modal-title" style="color:white;" id="exampleModalLabel">Ajouter Membre</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="form-field col-lg-6">
+                            <select class="input-text js-input" onchange="raison(this)" id="RaisonS" name="Raison">
+                                <option>Selectionner raison</option>
+                                <option value="Collecte Groupe">Collecte Groupe</option>
+                                <option value="Autre">Autre</option>
+                            </select>
+                            <label class="label" for="RaisonS">Raison</label>
+                        </div>
+                        <div class="form-field col-lg-6 ">
+                            <select onchange="VerifMois(this)" class="input-text js-input" name="Mois" id="Mois">
+                                <option value="Selectionner">Selectionner un mois</option>
+                                <option value="Janvier">Janvier</option>
+                                <option value="Fevrier">Fevrier</option>
+                                <option value="Mars">Mars</option>
+                                <option value="Avril">Avril</option>
+                                <option value="Mai">Mai</option>
+                                <option value="Juin">Juin</option>
+                                <option value="Juillet">Juillet</option>
+                                <option value="Aout">Aout</option>
+                                <option value="Septembre">Septembre</option>
+                                <option value="Octobre">Octobre</option>
+                                <option value="Novembre">Novembre</option>
+                                <option value="Decembre">Decembre</option>
+                            </select>
+                            <label class="label" for="Mois">Mois</label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-field col-lg-6">
+                            <input id="DateS" name="Date" class="input-text js-input" type="date" required>
+                            <label class="label" for="DateS">Date</label>
+                        </div>
+                        <div class="form-field col-lg-6">
+                            <input id="Intitule"  name="Intitule" class="input-text js-input" type="text" required>
+                            <label class="label" for="Intitule">Intitule</label>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="form-field col-lg-6">
+                            <input id="MontantS" onchange="MontantVerif()" name="Montant" class="input-text js-input" type="text" required>
+                            <label class="label" for="MontantS">Montant</label>
+                        </div>
+                    </div>
+                    <input id="TypeS" name="Type" value="Sortie" class="input-text js-input hidden" type="text" required>
+                    <input id="SecteurS" name="Secteur" value="Mharza & Hay Habib" class="input-text js-input hidden" type="text" required>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="button" id="BtnAjoutS" style="background-color:#2a3542;border-color:#2a3542;" onclick="AjouterTrSortie()" class="btn btn-primary btnAjotrer">Enregistrer</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/assets/plugins/datatables/datatables.min.js"></script>
+    <script src="~/assets/data/data_datatables.js"></script>
+    <script src="~/assets/js/jquery.maskedinput.min.js"></script>
+    <script src="~/Content/bootstrap-msg.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js" integrity="sha512-K3MtzSFJk6kgiFxCXXQKH6BbyBrTkTDf7E6kFh3xBZ2QNMtb6cU/RstENgQkdSLkAZeH/zAtzkxJOTTd8BqpHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/assets/js/jquery.maskMoney.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $("#AEntree #MoisE").prop('disabled', true);
+            $("#AEntree #IntituleE").prop('disabled', true);
+            $("#ASortie #Mois").prop('disabled', true);
+            $("#ASortie #Intitule").prop('disabled', true);
+            $('#AEntree #MontantE').maskMoney({ precision: 3, decimal: ',', thousands: '' });
+            $('#ASortie #MontantS').maskMoney({ precision: 3, decimal: ',', thousands: '' });
+            $.ajax({
+                type: 'GET',
+                url: '/api/Sec/GetNbMembreMharza',
+                success: function (result) {
+                    document.getElementById("NbMembres").innerHTML = result;
+                }
+            });
+            $.ajax({
+                type: 'GET',
+                url: '/api/Sec/GetCollecteMharza',
+                success: function (result) {
+                    document.getElementById("Collecte").innerHTML = result.toFixed(3);
+                }
+            });
+            $.ajax({
+                type: 'GET',
+                url: '/api/Sec/GetCaisseMharza',
+                success: function (result) {
+                    var Ent = 0, Sort = 0;
+                    
+                    for (var i = 0; i < result.length; i++) {
+                        console.log(result[i]);
+                        if (result[i].type == "Entree") {
+                            Ent = Ent + result[i].montant;
+                        }
+                        else {
+                            Sort = Sort + result[i].montant;
+                        }
+                    }
+
+                    document.getElementById("Caisse").innerHTML = (Ent - Sort).toFixed(3);
+                    localStorage.setItem("Caisse", (Ent - Sort).toFixed(3));
+                }
+            });
+            $.ajax({
+                type: 'GET',
+                url: '/api/Sec/GetCreditMharza',
+                success: function (result) {
+                    document.getElementById("Credit").innerHTML = result.toFixed(3);
+                }
+            });
+            $.ajax({
+                type: 'GET',
+                url: '/api/Sec/GetCreditCollecteMharza',
+                success: function (result) {
+                    var colJan = 0, colFev = 0, colMar = 0, colAvr = 0, colMai = 0, colJui = 0, colJuil = 0, colAou = 0, colSep = 0, colOct = 0, colNov = 0, colDec = 0;
+                    var creJan = 0, creFev = 0, creMar = 0, creAvr = 0, creMai = 0, creJui = 0, creJuil = 0, creAou = 0, creSep = 0, creOct = 0, creNov = 0, creDec = 0;
+                    for (var i = 0; i < result.length; i++) {
+                        if (result[i].mois == "Janvier") {
+                            colJan =  colJan + result[i].collecte;
+                            creJan = creJan + result[i].credit;
+                        }
+                        if (result[i].mois == "Fevrier") {
+                            colFev = colFev + result[i].collecte;
+                            creFev = creFev + result[i].credit;
+                        }
+                        if (result[i].mois == "Mars") {
+                            colMar = colMar + result[i].collecte;
+                            creMar = creMar + result[i].credit;
+                        }
+                        if (result[i].mois == "Avril") {
+                            colAvr = colAvr + result[i].collecte;
+                            creAvr = creAvr + result[i].credit;
+                        }
+                        if (result[i].mois == "Mai") {
+                            colMai = colMai + result[i].collecte;
+                            creMai = creMai + result[i].credit;
+                        }
+                        if (result[i].mois == "Juin") {
+                            colJui = colJui + result[i].collecte;
+                            creJui = creJui + result[i].credit;
+                        }
+                        if (result[i].mois == "Juillet") {
+                            colJuil = colJuil + result[i].collecte;
+                            creJuil = creJuil + result[i].credit;
+                        }
+                        if (result[i].mois == "Aout") {
+                            colAou = colAou + result[i].collecte;
+                            creAou = creAou + result[i].credit;
+                        }
+                        if (result[i].mois == "Septembre") {
+                            colSep = colSep + result[i].collecte;
+                            creSep = creSep + result[i].credit;
+                        }
+                        if (result[i].mois == "Octobre") {
+                            colOct = colOct + result[i].collecte;
+                            creOct = creOct + result[i].credit;
+                        }
+                        if (result[i].mois == "Novembre") {
+                            colNov = colNov + result[i].collecte;
+                            creNov = creNov + result[i].credit;
+                        }
+                        if (result[i].mois == "Decembre") {
+                            colDec = colDec + result[i].collecte;
+                            creDec = creDec + result[i].credit;
+                        }
+                        
+                    }
+                    var ctx_combo_bar = document.getElementById("Bilan");
+                    var comboBarLineChart = new Chart(ctx_combo_bar, {
+                        type: 'bar',
+                        data: {
+                            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                            datasets: [{
+                                type: 'bar',
+                                label: 'Collecte',
+                                backgroundColor: '#FF6B8A',
+                                data: [colJan, colFev, colMar, colAvr, colMai, colJui, colJuil, colAou, colSep, colOct, colNov, colDec],
+                                borderColor: 'white',
+                                borderWidth: 0
+                            }, {
+                                type: 'bar',
+                                label: 'Credit',
+                                backgroundColor: '#059BFF',
+                                data: [creJan, creFev, creMar, creAvr, creMai, creJui, creJuil, creAou, creSep, creOct, creNov, creDec],
+                            }],
+                            borderWidth: 1
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                },
+                error: function () {
+                    
+                }
+            });
+            var table = $("#Sortie").DataTable({
+                "paging": true,
+                "bAutoWidth": true,
+                "destroy": true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/French.json"
+                },
+                "sScrollY": "135",
+                "sScrollX": false,
+                ajax: {
+                    url: "/api/sec/GetSortieMharza",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "raisonSpecifique"
+                    },
+                    {
+                        data: "montant"
+                    },
+                    {
+                        data: "date",
+                        "render": function (data, type, row) {
+                            return moment(new Date(data).toString()).format('DD-MM-YYYY');
+                        }
+                    }
+                ]
+            });
+            var tab = $("#Entree").DataTable({
+                "paging": true,
+                "bAutoWidth": true,
+                "destroy": true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/French.json"
+                }, 
+                "sScrollY": "135",
+                "sScrollX": false,
+                ajax: {
+                    url: "/api/sec/GetEnreeMharza" ,
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "raisonSpecifique"
+                    },
+                    {
+                        data: "montant"
+                    },
+                    {
+                       data: "date",
+                        "render": function (data, type, row) {
+                        return moment(new Date(data).toString()).format('DD-MM-YYYY');
+                    }
+                    }
+                ]
+            });
+        });
+        function AjouterTrEntree() {
+            $.ajax({
+                url: "/Secteurs/AjouterTansaction",
+                type: "POST",
+                dataType: 'JSON',
+                data: $("#AEntree").serialize(),
+
+                success: function (result) {
+                    $("#AEntree")[0].reset();
+                    window.location.reload();
+
+                },
+                error: function (err) {
+                    Msg.error("Caisse n'est pas ajouté", 3000);
+                }
+            });
+        }
+        function AjouterTrSortie() {
+            $.ajax({
+                url: "/Secteurs/AjouterTansaction",
+                type: "POST",
+                dataType: 'JSON',
+                data: $("#ASortie").serialize(),
+
+                success: function (result) {
+                    $("#ASortie")[0].reset();
+                    window.location.reload();
+
+                },
+                error: function (err) {
+                    Msg.error("Caisse n'est pas ajouté", 3000);
+                }
+            });
+        }
+        function raison(_this) {
+            if (_this.value == "Collecte Groupe") {
+                $("#ASortie #Mois").prop('disabled', false);
+            }
+            else {
+                $("#ASortie #Mois").prop('disabled', true);
+            }
+            if (_this.value == "Autre") {
+                $("#ASortie #Intitule").prop('disabled', false);
+            }
+            else {
+                $("#ASortie #Intitule").prop('disabled', true);
+            }
+
+        }
+        function MontantVerif() {
+            var Mnt = document.getElementById("MontantS").value.replace(",",".");
+            var Cai = localStorage.getItem("Caisse");
+
+            if (parseFloat(Mnt) > parseFloat(Cai)) {
+                swal.fire({
+                    title: "Attention!",
+                    text: "Montant n'existe pas dans la caisse",
+                    timer: 3000
+                })
+                $("#ASortie #BtnAjoutS").prop('disabled', true);
+            }
+            else {
+                $("#ASortie #BtnAjoutS").prop('disabled', false);
+            }
+        }
+        function raisonE(_this) {
+            if (_this.value == "Collecte Mois") {
+                $("#AEntree #MoisE").prop('disabled', false);
+            }
+            else {
+                $("#AEntree #MoisE").prop('disabled', true);
+            }
+            if (_this.value == "Autre") {
+                $("#AEntree #IntituleE").prop('disabled', false);
+            }
+            else {
+                $("#AEntree #IntituleE").prop('disabled', true);
+            }
+
+        }
+    </script>
+}
